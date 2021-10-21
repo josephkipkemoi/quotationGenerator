@@ -3,11 +3,9 @@ import axios from "axios";
 export const postCompany = createAsyncThunk(
     'quotation/postCompany',
     async (url,thunkApi) => {
-        const param = url;
-        const res = await axios.post(`/api/company?${'param'}`);
-        // console.log(url)
-        console.log(res)
-        // return res.data
+        const res = await axios.post(`/api/company?${url}`);
+
+        return res.data
     }
 )
 
@@ -24,4 +22,4 @@ export const companySlice = createSlice({
     }
 })
 
-export default companySlice.reducer;
+export default companySlice.reducer;    

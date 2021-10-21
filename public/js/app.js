@@ -5911,21 +5911,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var postCompany = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/postCompany', /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(url, thunkApi) {
-    var param, res;
+    var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            param = url;
-            _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/company?".concat('param'));
+            _context.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/company?".concat(url));
 
-          case 3:
+          case 2:
             res = _context.sent;
-            // console.log(url)
-            console.log(res); // return res.data
+            return _context.abrupt("return", res.data);
 
-          case 5:
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -6912,6 +6910,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Reducer/RootReducer */ "./resources/js/Components/Reducer/RootReducer.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6920,23 +6936,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Dashboard(props) {
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)(); // dispatch(postCompany({m:"l"}))
-
-  var company = {
-    company_id: "1",
-    company_logo_url: "href href",
-    company_slogan: "Pamoja Twaweza",
-    company_address: "P.O.Box 123",
-    company_web_url: "www.lolo.com",
-    company_email: "jkemb@gmail.com"
-  }; // console.log(new URLSearchParams({a:'b',c:'d',e:'f'}).toString())
-
-  var sendData = function sendData(e) {
-    // 
-    var param = new URLSearchParams(company);
-    dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postCompany)(param.toString())); // e.preventDefault()
-  };
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: props.auth,
     errors: props.errors,
@@ -6958,17 +6957,49 @@ function Dashboard(props) {
           })
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      type: "number",
-      name: "company_id",
-      defaultValue: props.auth.user.id
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CompanyDetails, {
+      props: props
+    })]
+  });
+}
+
+function CompanyDetails(_ref) {
+  var props = _ref.props;
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    company_id: props.auth.user.id,
+    company_logo_url: "",
+    company_slogan: "",
+    company_address: "",
+    company_web_url: "",
+    company_email: ""
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      company = _useState2[0],
+      setCompany = _useState2[1];
+
+  var getInput = function getInput(e) {
+    return setCompany(_objectSpread(_objectSpread({}, company), {}, _defineProperty({}, e.target.name, e.target.value)));
+  };
+
+  var param = new URLSearchParams(company).toString();
+
+  var sendData = function sendData() {
+    return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postCompany)(param));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
       htmlFor: "company_logo",
       children: "Company Logo"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
       id: "company_logo",
       type: "text",
       name: "company_logo_url",
+      onChange: function onChange(e) {
+        return getInput(e);
+      },
       placeholder: "Company Logo URL"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
       htmlFor: "company_slogan",
@@ -6977,6 +7008,9 @@ function Dashboard(props) {
       id: "company_slogan",
       type: "text",
       name: "company_slogan",
+      onChange: function onChange(e) {
+        return getInput(e);
+      },
       placeholder: "Company Slogan"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
       htmlFor: "company_address",
@@ -6985,6 +7019,9 @@ function Dashboard(props) {
       id: "company_address",
       type: "text",
       name: "company_address",
+      onChange: function onChange(e) {
+        return getInput(e);
+      },
       placeholder: "Company Address"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
       htmlFor: "company_web_url",
@@ -6993,6 +7030,9 @@ function Dashboard(props) {
       id: "company_web_url",
       type: "text",
       name: "company_web_url",
+      onChange: function onChange(e) {
+        return getInput(e);
+      },
       placeholder: "Company Website"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
       htmlFor: "company_email",
@@ -7001,6 +7041,9 @@ function Dashboard(props) {
       id: "company_email",
       type: "text",
       name: "company_email",
+      onChange: function onChange(e) {
+        return getInput(e);
+      },
       placeholder: "Company Email"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
       type: "submit",

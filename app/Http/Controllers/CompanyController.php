@@ -16,9 +16,7 @@ class CompanyController extends Controller
     public function index()
     {
         //
-        Company::findOrFail(1);
-        // return redirect()->route('dashboard');
-     
+        return Company::findOrFail(1);     
     }
 
     /**
@@ -30,10 +28,7 @@ class CompanyController extends Controller
     public function store(Request $request, Company $company)
     {
  
-        dd('$company');
-
-        return Company::all();
-    //    return Company::create($company->validateCompany($request)->all());
+       return Company::create($company->validateCompany($request)->all());
    
      }
 
