@@ -28,12 +28,21 @@ export const postProduct = createAsyncThunk(
     }
 )
 
+export const postTotal = createAsyncThunk(
+    'quotation/postTotal',
+    async () => {
+        const res = await axios.post('/api/quotation_total');
+
+        return res.data
+    }
+)
 export const companySlice = createSlice({
     name:'quoatation',
     initialState:{
         company:[],
         address:[],
-        product:[]
+        product:[],
+        quotation_total:[]
     }
     ,
     extraReducers: (builder) => {
@@ -45,6 +54,9 @@ export const companySlice = createSlice({
         }),
         builder.addCase(postProduct.fulfilled, (state, data) => {
             state.product.push(data)
+        }),
+        builder.addCase(postTotal.fulfilled, (state, data) => {
+            state.quotation_total.push(data)
         })
     }
 })

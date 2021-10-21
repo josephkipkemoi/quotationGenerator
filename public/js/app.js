@@ -5895,6 +5895,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "postCompany": () => (/* binding */ postCompany),
 /* harmony export */   "postAddress": () => (/* binding */ postAddress),
 /* harmony export */   "postProduct": () => (/* binding */ postProduct),
+/* harmony export */   "postTotal": () => (/* binding */ postTotal),
 /* harmony export */   "companySlice": () => (/* binding */ companySlice),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
@@ -5989,12 +5990,33 @@ var postProduct = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
     return _ref3.apply(this, arguments);
   };
 }());
+var postTotal = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/postTotal', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+  var res;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.next = 2;
+          return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/quotation_total');
+
+        case 2:
+          res = _context4.sent;
+          return _context4.abrupt("return", res.data);
+
+        case 4:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  }, _callee4);
+})));
 var companySlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
   name: 'quoatation',
   initialState: {
     company: [],
     address: [],
-    product: []
+    product: [],
+    quotation_total: []
   },
   extraReducers: function extraReducers(builder) {
     builder.addCase(postCompany.fulfilled, function (state, data) {
@@ -6003,6 +6025,8 @@ var companySlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)
       state.address.push(data);
     }), builder.addCase(postProduct.fulfilled, function (state, data) {
       state.product.push(data);
+    }), builder.addCase(postTotal.fulfilled, function (state, data) {
+      state.quotation_total.push(data);
     });
   }
 });
@@ -7019,11 +7043,11 @@ function Dashboard(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CompanyDetails, {
       props: props
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(QuotationAddress, {
+    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(QuotationAddress, {
       props: props
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PostProductDetails, {
+    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PostProductDetails, {
       props: props
-    })]
+    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PostTotal, {})]
   });
 }
 
@@ -7225,6 +7249,24 @@ function PostProductDetails(_ref3) {
         return getInput(e);
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+      type: "submit",
+      onClick: sendData
+    })]
+  });
+}
+
+function PostTotal() {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+
+  var sendData = function sendData() {
+    return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postTotal)());
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+      htmlFor: "post_total"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+      id: "post_total",
       type: "submit",
       onClick: sendData
     })]
