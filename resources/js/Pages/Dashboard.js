@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { useDispatch } from 'react-redux';
-import { postAddress, postCompany, postProduct } from '@/Components/Reducer/RootReducer';
+import { postAddress, postCompany, postProduct, postTotal } from '@/Components/Reducer/RootReducer';
 
 export default function Dashboard(props) {
 
@@ -22,9 +22,10 @@ export default function Dashboard(props) {
                 </div>
             </div>
 
-              <CompanyDetails props={props}/>
-              <QuotationAddress props={props}/>
-              <PostProductDetails props={props}/>
+              <CompanyDetails props={props}/> <br/>
+              <QuotationAddress props={props}/> <br/>
+              <PostProductDetails props={props}/> <br/>
+              <PostTotal/>
           </Authenticated>
     );
 }
@@ -122,6 +123,19 @@ function PostProductDetails({props}){
             <label htmlFor="product_unit_price">Unit Price</label>
             <input id="product_unit_price" name="product_unit_price" type="number" onChange={(e) => getInput(e)}/>
             <input type="submit" onClick={sendData}/>
+        </div>
+    )
+}
+
+function PostTotal() {
+    const dispatch = useDispatch();
+
+    const sendData = () => dispatch(postTotal());
+
+    return (
+        <div>
+            <label htmlFor="post_total"></label>
+            <input id="post_total" type="submit" onClick={sendData}/>
         </div>
     )
 }
