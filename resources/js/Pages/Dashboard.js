@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { useDispatch } from 'react-redux';
-import { postAddress, postCompany } from '@/Components/Reducer/RootReducer';
-import { add, uniqueId } from 'lodash';
+import { postAddress, postCompany, postProduct } from '@/Components/Reducer/RootReducer';
 
 export default function Dashboard(props) {
 
@@ -25,6 +24,7 @@ export default function Dashboard(props) {
 
               <CompanyDetails props={props}/>
               <QuotationAddress props={props}/>
+              <PostProductDetails props={props}/>
           </Authenticated>
     );
 }
@@ -91,6 +91,36 @@ function QuotationAddress({props}){
             <input id="quotation_receipient" onChange={(e) => getInput(e)} name="quotation_to" type="text"/>       
             <label htmlFor="quotation_date"></label>
             <input id="quotation_date" name="quotation_date" onChange={(e) => getInput(e)} type="date"/> 
+            <input type="submit" onClick={sendData}/>
+        </div>
+    )
+}
+
+function PostProductDetails({props}){
+
+    const dispatch = useDispatch()
+
+    const [product, setProduct] = useState({
+        product_id:props.auth.user.id,
+        product_quantity:"",
+        product_description: "",
+        product_unit_price:""
+    });
+
+    const getInput = e => setProduct({...product, [e.target.name]:e.target.value});
+
+    const param = new URLSearchParams(product).toString();
+
+    const sendData = () => dispatch(postProduct(param));
+
+    return (
+        <div>
+            <label htmlFor="product_quantity">Quantity</label>
+            <input id="product_quantity" name="product_quantity" type="number" onChange={(e) => getInput(e)}/>
+            <label htmlFor="product_description">Description</label>
+            <input id="product_description" name="product_description" type="text" onChange={(e) => getInput(e)}/>
+            <label htmlFor="product_unit_price">Unit Price</label>
+            <input id="product_unit_price" name="product_unit_price" type="number" onChange={(e) => getInput(e)}/>
             <input type="submit" onClick={sendData}/>
         </div>
     )
