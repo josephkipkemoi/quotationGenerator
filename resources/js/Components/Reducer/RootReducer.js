@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
 export const postCompany = createAsyncThunk(
     'quotation/postCompany',
     async (url,thunkApi) => {
@@ -9,15 +10,28 @@ export const postCompany = createAsyncThunk(
     }
 )
 
+export const postAddress = createAsyncThunk(
+    'quotation/postAddress', 
+    async (url, thunkApi) => {
+        const res = await axios.post(`/api/quotation?${url}`);
+        
+         return res.data
+    }
+)
+
 export const companySlice = createSlice({
     name:'quoatation',
     initialState:{
-        quotation:[]
+        company:[],
+        address:[]
     }
     ,
     extraReducers: (builder) => {
         builder.addCase(postCompany.fulfilled, (state,data) => {
-            state.quotation.push(data)
+            state.company.push(data)
+        }),
+        builder.addCase(postAddress.fulfilled, (state, data) => {
+            state.address.push(data)
         })
     }
 })
