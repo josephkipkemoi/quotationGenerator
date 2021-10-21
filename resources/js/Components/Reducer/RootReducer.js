@@ -14,8 +14,17 @@ export const postAddress = createAsyncThunk(
     'quotation/postAddress', 
     async (url, thunkApi) => {
         const res = await axios.post(`/api/quotation?${url}`);
-        
-         return res.data
+
+        return res.data
+    }
+)
+
+export const postProduct = createAsyncThunk(
+    'quotation/postProduct',
+    async (url, thunkApi) => {
+        const res = await axios.post(`/api/product?${url}`);
+
+        return res.data
     }
 )
 
@@ -23,7 +32,8 @@ export const companySlice = createSlice({
     name:'quoatation',
     initialState:{
         company:[],
-        address:[]
+        address:[],
+        product:[]
     }
     ,
     extraReducers: (builder) => {
@@ -32,6 +42,9 @@ export const companySlice = createSlice({
         }),
         builder.addCase(postAddress.fulfilled, (state, data) => {
             state.address.push(data)
+        }),
+        builder.addCase(postProduct.fulfilled, (state, data) => {
+            state.product.push(data)
         })
     }
 })
