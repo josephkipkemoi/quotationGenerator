@@ -120,6 +120,7 @@ export default function Authenticated({ auth, header, children }) {
             <main>
           
                  {children}
+       
                 <a href="/api/download" target="_blank">Download</a>
             </main>
         </div>
