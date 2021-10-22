@@ -15,7 +15,7 @@ class QuotationController extends Controller
     public function index()
     {
         //
-        return Quotation::first();
+        return Quotation::latest()->first();
     }
 
     /**
@@ -36,7 +36,7 @@ class QuotationController extends Controller
      */
     public function store(Request $request, Quotation $quote)
     {
-      return Quotation::create($quote->validateQuotation($request)->all());
+      return Quotation::updateOrCreate($quote->validateQuotation($request)->all());
      }
 
     /**

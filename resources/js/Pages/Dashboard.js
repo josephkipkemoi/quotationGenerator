@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { useDispatch } from 'react-redux';
-import { postAddress, postCompany, postProduct, postTotal } from '@/Components/Reducer/RootReducer';
+import { postAddress, postCompany, postProduct, postTotal, downloadPdf } from '@/Components/Reducer/RootReducer';
 import '../../css/app.css';
 
 export default function Dashboard(props) {
@@ -105,6 +105,7 @@ function CompanyDetails({props}){
                 <strong className="font-bold">Add Company Information</strong>
                 <span className="font-open-close">-</span>
             </div>
+            <br/>
              <div className="toggle-body">
              <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className="w-full max-w-lg">
@@ -195,7 +196,8 @@ function QuotationAddress({props}){
              <div onClick={toggleBody} className="toggle-parent bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <strong className="font-bold">Enter Receipient Details</strong>
                     <span className="font-open-close-2">-</span>
-                </div>
+            </div>
+            <br/>
             <div className="toggle-body-2">
             <div className="w-full max-w-xs">   
                 <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 rounded" role="alert">
@@ -255,28 +257,33 @@ function PostProductDetails({props}){
         }
       
     }
+
     return (
         <div>
-              <div onClick={toggleBody} className="toggle-parent bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <div onClick={toggleBody} className="toggle-parent bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <strong className="font-bold">Enter Receipient Details</strong>
                     <span className="font-open-close-3">-</span>
-                </div>
+            </div>
+            <br/>
             <div className="toggle-body-3">
                 <div className="w-full max-w-xs">
                     <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 rounded" role="alert">
                         <p className="font-bold">Product Details</p>
                         <p className="text-sm">Add Quantity of your item, Description of your quotation and Unit price, We will do the hard work and calculate for you the total</p>
                     </div>
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        
+                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">        
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="product_quantity">Quantity</label>
                         <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="product_quantity" name="product_quantity" type="number" onChange={(e) => getInput(e)}/>
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="product_description">Description</label>
                         <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"  id="product_description" name="product_description" type="text" onChange={(e) => getInput(e)}/>
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="product_unit_price">Unit Price</label>
                         <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="product_unit_price" name="product_unit_price" type="number" onChange={(e) => getInput(e)}/>
-                        <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" onClick={sendData}/>
-                    </div>
+                        <input className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" value="Add" onClick={sendData}/>
+                        <PostTotal props={props}/>
+                      
+                  </div>
+
+            
                 </div>
             </div>
         </div>
@@ -284,15 +291,24 @@ function PostProductDetails({props}){
     )
 }
 
-function PostTotal() {
+function PostTotal({props}) {
     const dispatch = useDispatch();
 
-    const sendData = () => dispatch(postTotal());
+    const sendData = () => dispatch(postTotal(props.auth.user.id));
 
+    // const generatePdf = () => dispatch(downloadPdf());
+    console.log()
     return (
         <div className="w-full max-w-xs">
             <label htmlFor="post_total"></label>
-            <input id="post_total" type="submit" onClick={sendData}/>
+            <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" value="Generate PDF" id="post_tota" onClick={sendData}/>
+            <a href={`/api/download?id=${props.auth.user.id}`} target="_blank">
+                <button  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                    <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+                                    <span>Download</span>
+                </button>  
+            </a>
+          
         </div>
     )
 }

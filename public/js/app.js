@@ -5896,6 +5896,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "postAddress": () => (/* binding */ postAddress),
 /* harmony export */   "postProduct": () => (/* binding */ postProduct),
 /* harmony export */   "postTotal": () => (/* binding */ postTotal),
+/* harmony export */   "downloadPdf": () => (/* binding */ downloadPdf),
 /* harmony export */   "companySlice": () => (/* binding */ companySlice),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
@@ -5990,26 +5991,58 @@ var postProduct = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
     return _ref3.apply(this, arguments);
   };
 }());
-var postTotal = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/postTotal', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-  var res;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
-    while (1) {
-      switch (_context4.prev = _context4.next) {
-        case 0:
-          _context4.next = 2;
-          return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/quotation_total');
+var postTotal = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/postTotal', /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, thunkApi) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/quotation_total?id=".concat(id));
 
-        case 2:
-          res = _context4.sent;
-          return _context4.abrupt("return", res.data);
+          case 2:
+            res = _context4.sent;
+            return _context4.abrupt("return", res.data);
 
-        case 4:
-        case "end":
-          return _context4.stop();
+          case 4:
+          case "end":
+            return _context4.stop();
+        }
       }
-    }
-  }, _callee4);
-})));
+    }, _callee4);
+  }));
+
+  return function (_x7, _x8) {
+    return _ref4.apply(this, arguments);
+  };
+}());
+var downloadPdf = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/downloadPdf', /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, thunkApi) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/download?id=".concat(id));
+
+          case 2:
+            res = _context5.sent;
+            return _context5.abrupt("return", res.data);
+
+          case 4:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function (_x9, _x10) {
+    return _ref5.apply(this, arguments);
+  };
+}());
 var companySlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
   name: 'quoatation',
   initialState: {
@@ -6304,12 +6337,8 @@ function Authenticated(_ref) {
         className: "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8",
         children: header
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("main", {
-      children: [children, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-        href: "/api/download",
-        target: "_blank",
-        children: "Download"
-      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("main", {
+      children: children
     })]
   });
 }
@@ -7148,7 +7177,7 @@ function CompanyDetails(_ref) {
         className: "font-open-close",
         children: "-"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "toggle-body",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
@@ -7332,7 +7361,7 @@ function QuotationAddress(_ref2) {
         className: "font-open-close-2",
         children: "-"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "toggle-body-2",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "w-full max-w-xs",
@@ -7446,7 +7475,7 @@ function PostProductDetails(_ref3) {
         className: "font-open-close-3",
         children: "-"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "toggle-body-3",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "w-full max-w-xs",
@@ -7499,9 +7528,12 @@ function PostProductDetails(_ref3) {
               return getInput(e);
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-            className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+            className: "bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
             type: "submit",
+            value: "Add",
             onClick: sendData
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(PostTotal, {
+            props: props
           })]
         })]
       })
@@ -7509,21 +7541,42 @@ function PostProductDetails(_ref3) {
   });
 }
 
-function PostTotal() {
+function PostTotal(_ref4) {
+  var props = _ref4.props;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
 
   var sendData = function sendData() {
-    return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postTotal)());
-  };
+    return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postTotal)(props.auth.user.id));
+  }; // const generatePdf = () => dispatch(downloadPdf());
 
+
+  console.log();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "w-full max-w-xs",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
       htmlFor: "post_total"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-      id: "post_total",
-      type: "submit",
+      className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+      type: "button",
+      value: "Generate PDF",
+      id: "post_tota",
       onClick: sendData
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+      href: "/api/download?id=".concat(props.auth.user.id),
+      target: "_blank",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
+        className: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("svg", {
+          className: "fill-current w-4 h-4 mr-2",
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 20 20",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("path", {
+            d: "M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          children: "Download"
+        })]
+      })
     })]
   });
 } // function Modal(){

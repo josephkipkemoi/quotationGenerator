@@ -41,4 +41,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     public function quotation()
+    {
+        return $this->hasMany(Product::class,'product_id');
+    }
+
+    static function filterProduct($products)
+    {
+        $arr = [];
+
+        foreach ($products as $product)
+        {
+           array_push($arr,$product);
+        }
+
+         return $arr;
+    }
+
+   
 }

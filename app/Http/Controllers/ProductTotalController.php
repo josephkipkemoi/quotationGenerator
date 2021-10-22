@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Svg\Tag\Rect;
 
 class ProductTotalController extends Controller
 {
@@ -12,21 +14,12 @@ class ProductTotalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        return ["total_sum" => Product::get()->sum('product_total'), "products" =>  Product::get()];
+        return ["total_sum" => Product::where('product_id',$request->input('id'))->get()->sum('product_total'), "products" =>  User::filterProduct(User::find($request->input('id'))->quotation()->get())];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -37,8 +30,7 @@ class ProductTotalController extends Controller
     public function store(Request $request, Product $product)
     {
         //
-;
-        Product::create($product->setTotalPrice($product->validateProduct($request,$product)->all(),$product));
+        Product::updateOrCreate($product->setTotalPrice($product->validateProduct($request,$product)->all(),$product));
     }
 
     /**
@@ -47,9 +39,10 @@ class ProductTotalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, $id)
     {
-        //
+ 
+          return ["total_sum" => Product::find($id)->userQuotation()->sum('product_total'), "products" =>  $user->filterProduct(User::find($id)->quotation()->get())];
     }
 
     /**
@@ -84,6 +77,6 @@ class ProductTotalController extends Controller
     public function destroy($id)
     {
         //
-        Product::find($id)->delete();
+        Product::find($id)->truncate();
     }
 }

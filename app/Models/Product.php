@@ -50,5 +50,15 @@ class Product extends Model
  
         return $product->update($request->only(['product_quantity','product_description','product_unit_price','product_total']));
      }
+
+     public function userQuotation()
+     {
+         return $this->hasMany(Product::class,'product_id');
+     }
+
+     public function latestQuotation()
+    {
+        return $this->hasOne(Product::class, 'product_id')->latestOfMany();
+    }
 }
  

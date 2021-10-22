@@ -13,10 +13,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return Company::findOrFail(1);     
+        return Company::findOrFail($request);     
     }
 
     /**
@@ -28,7 +28,7 @@ class CompanyController extends Controller
     public function store(Request $request, Company $company)
     {
  
-       return Company::create($company->validateCompany($request)->all());
+       return Company::updateOrCreate($company->validateCompany($request)->all());
    
      }
 
