@@ -30,12 +30,22 @@ export const postProduct = createAsyncThunk(
 
 export const postTotal = createAsyncThunk(
     'quotation/postTotal',
-    async () => {
-        const res = await axios.post('/api/quotation_total');
+    async (id,thunkApi) => {
+        const res = await axios.post(`/api/quotation_total?id=${id}`);
 
         return res.data
     }
 )
+
+export const downloadPdf = createAsyncThunk(
+    'quotation/downloadPdf',
+    async (id,thunkApi) => {
+        const res = await axios.get(`/api/download?id=${id}`);
+
+        return res.data
+    }
+)
+ 
 export const companySlice = createSlice({
     name:'quoatation',
     initialState:{

@@ -11,12 +11,12 @@ class QuotationTotal extends Model
     use HasFactory;
 
     protected $fillable = [
-        'quotation_sub_total','quotation_vat','quotation_total','quotation_id'
+        'quotation_sub_total','quotation_vat','quotation_total','quotation_totals_id'
     ];
 
     protected $casts = [
         'quotation_sub_total' => 'integer','quotation_vat' => 'integer',
-        'quotation_total' => 'integer','quotation_id'=>'integer'
+        'quotation_total' => 'integer','quotation_totals_id'=>'integer'
     ];
 
 
@@ -26,15 +26,15 @@ class QuotationTotal extends Model
     
     static function quotationArithmetic($amount,$company)
     {
-        $amount = $amount['total_sum'];
-        $company_id = $company->company_id;
+           $amount = $amount['total_sum'];
+        $company_id = $company[0]->company_id;
         $set_vat = 0.16;
         $vat_amount = $amount * $set_vat;
         $sub_total = $amount - $vat_amount;
         
 
           return [
-                'quotation_id' => $company_id,
+                'quotation_totals_id' => $company_id,
                 'quotation_vat' => $vat_amount, 
                 'quotation_sub_total' => $sub_total,
                 'quotation_total' => $amount

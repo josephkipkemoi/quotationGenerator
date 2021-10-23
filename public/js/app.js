@@ -5896,6 +5896,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "postAddress": () => (/* binding */ postAddress),
 /* harmony export */   "postProduct": () => (/* binding */ postProduct),
 /* harmony export */   "postTotal": () => (/* binding */ postTotal),
+/* harmony export */   "downloadPdf": () => (/* binding */ downloadPdf),
 /* harmony export */   "companySlice": () => (/* binding */ companySlice),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
@@ -5990,26 +5991,58 @@ var postProduct = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
     return _ref3.apply(this, arguments);
   };
 }());
-var postTotal = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/postTotal', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-  var res;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
-    while (1) {
-      switch (_context4.prev = _context4.next) {
-        case 0:
-          _context4.next = 2;
-          return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/quotation_total');
+var postTotal = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/postTotal', /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, thunkApi) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/quotation_total?id=".concat(id));
 
-        case 2:
-          res = _context4.sent;
-          return _context4.abrupt("return", res.data);
+          case 2:
+            res = _context4.sent;
+            return _context4.abrupt("return", res.data);
 
-        case 4:
-        case "end":
-          return _context4.stop();
+          case 4:
+          case "end":
+            return _context4.stop();
+        }
       }
-    }
-  }, _callee4);
-})));
+    }, _callee4);
+  }));
+
+  return function (_x7, _x8) {
+    return _ref4.apply(this, arguments);
+  };
+}());
+var downloadPdf = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)('quotation/downloadPdf', /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, thunkApi) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/download?id=".concat(id));
+
+          case 2:
+            res = _context5.sent;
+            return _context5.abrupt("return", res.data);
+
+          case 4:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function (_x9, _x10) {
+    return _ref5.apply(this, arguments);
+  };
+}());
 var companySlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
   name: 'quoatation',
   initialState: {
@@ -6304,12 +6337,8 @@ function Authenticated(_ref) {
         className: "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8",
         children: header
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("main", {
-      children: [children, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-        href: "/api/download",
-        target: "_blank",
-        children: "Download"
-      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("main", {
+      children: children
     })]
   });
 }
@@ -6993,7 +7022,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Reducer/RootReducer */ "./resources/js/Components/Reducer/RootReducer.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../css/app.css */ "./resources/css/app.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -7019,35 +7049,70 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function Dashboard(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: props.auth,
     errors: props.errors,
-    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+    header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
       className: "font-semibold text-xl text-gray-800 leading-tight",
       children: "Dashboard"
     }),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
       title: "Dashboard"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "py-12",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3",
+            role: "alert",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("svg", {
+              className: "fill-current w-4 h-4 mr-2",
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 20 20",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("path", {
+                d: "M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+              children: "Open and fill form below to generate quotation"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             className: "p-6 bg-white border-b border-gray-200",
-            children: "You're logged in!"
-          })
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "px-2",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "flex -mx-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "w-1/3 px-2",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CompanyDetails, {
+                      props: props
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "w-1/3 px-2",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuotationAddress, {
+                      props: props
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "w-1/3 px-2",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(PostProductDetails, {
+                      props: props
+                    })
+                  })
+                })]
+              })
+            })
+          })]
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CompanyDetails, {
-      props: props
-    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(QuotationAddress, {
-      props: props
-    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PostProductDetails, {
-      props: props
-    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PostTotal, {})]
+    })]
   });
 }
 
@@ -7055,7 +7120,12 @@ function CompanyDetails(_ref) {
   var props = _ref.props;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      toggle = _useState2[0],
+      setToggle = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     company_id: props.auth.user.id,
     company_logo_url: "",
     company_slogan: "",
@@ -7063,9 +7133,9 @@ function CompanyDetails(_ref) {
     company_web_url: "",
     company_email: ""
   }),
-      _useState2 = _slicedToArray(_useState, 2),
-      company = _useState2[0],
-      setCompany = _useState2[1];
+      _useState4 = _slicedToArray(_useState3, 2),
+      company = _useState4[0],
+      setCompany = _useState4[1];
 
   var getInput = function getInput(e) {
     return setCompany(_objectSpread(_objectSpread({}, company), {}, _defineProperty({}, e.target.name, e.target.value)));
@@ -7077,65 +7147,156 @@ function CompanyDetails(_ref) {
     return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postCompany)(param));
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "company_logo",
-      children: "Company Logo"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "company_logo",
-      type: "text",
-      name: "company_logo_url",
-      onChange: function onChange(e) {
-        return getInput(e);
-      },
-      placeholder: "Company Logo URL"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "company_slogan",
-      children: "Company Slogan"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "company_slogan",
-      type: "text",
-      name: "company_slogan",
-      onChange: function onChange(e) {
-        return getInput(e);
-      },
-      placeholder: "Company Slogan"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "company_address",
-      children: "Company Address"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "company_address",
-      type: "text",
-      name: "company_address",
-      onChange: function onChange(e) {
-        return getInput(e);
-      },
-      placeholder: "Company Address"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "company_web_url",
-      children: "Company Website"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "company_web_url",
-      type: "text",
-      name: "company_web_url",
-      onChange: function onChange(e) {
-        return getInput(e);
-      },
-      placeholder: "Company Website"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "company_email",
-      children: "Company Email"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "company_email",
-      type: "text",
-      name: "company_email",
-      onChange: function onChange(e) {
-        return getInput(e);
-      },
-      placeholder: "Company Email"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      type: "submit",
-      onClick: sendData
+  var toggleBtn = function toggleBtn() {};
+
+  var toggleBody = function toggleBody() {
+    var toggleBody = document.getElementsByClassName('toggle-body')[0];
+    var toggleBodyOn = document.getElementsByClassName('toggle-body-on')[0];
+    var toggleSpan = document.getElementsByClassName('font-open-close')[0];
+
+    if (toggle) {
+      toggleBody.className = 'toggle-body-on';
+      toggleSpan.textContent = '+';
+      setToggle(false);
+    } else {
+      toggleBodyOn.className = 'toggle-body';
+      toggleSpan.textContent = '-';
+      setToggle(true);
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      onClick: toggleBody,
+      className: "toggle-parent bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative",
+      role: "alert",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+        className: "font-bold",
+        children: "Add Company Information"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "font-open-close",
+        children: "-"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "toggle-body",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "w-full max-w-lg",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 rounded",
+            role: "alert",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+              className: "font-bold",
+              children: "Company Details"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+              className: "text-sm",
+              children: "This information will be at the top of your invoice, Make sure you give out correct information"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  className: "block text-gray-700 text-sm font-bold mb-2",
+                  htmlFor: "company_logo",
+                  children: "Company Logo"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+                  id: "company_logo",
+                  type: "text",
+                  name: "company_logo_url",
+                  onChange: function onChange(e) {
+                    return getInput(e);
+                  },
+                  placeholder: "Company Logo URL"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  className: "block text-gray-700 text-sm font-bold mb-2",
+                  htmlFor: "company_slogan",
+                  children: "Company Slogan"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+                  id: "company_slogan",
+                  type: "text",
+                  name: "company_slogan",
+                  onChange: function onChange(e) {
+                    return getInput(e);
+                  },
+                  placeholder: "Company Slogan"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  className: "block text-gray-700 text-sm font-bold mb-2",
+                  htmlFor: "company_address",
+                  children: "Company Address"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+                  id: "company_address",
+                  type: "text",
+                  name: "company_address",
+                  onChange: function onChange(e) {
+                    return getInput(e);
+                  },
+                  placeholder: "Company Address"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  className: "block text-gray-700 text-sm font-bold mb-2",
+                  htmlFor: "company_web_url",
+                  children: "Company Website"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+                  id: "company_web_url",
+                  type: "text",
+                  name: "company_web_url",
+                  onChange: function onChange(e) {
+                    return getInput(e);
+                  },
+                  placeholder: "Company Website"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "mb-4",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                  className: "block text-gray-700 text-sm font-bold mb-2",
+                  htmlFor: "company_email",
+                  children: "Company Email"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+                  id: "company_email",
+                  type: "text",
+                  name: "company_email",
+                  onChange: function onChange(e) {
+                    return getInput(e);
+                  },
+                  placeholder: "Company Email"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "flex items-center justify-between",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
+                  type: "submit",
+                  onClick: sendData
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                  type: "button",
+                  className: "button",
+                  onClick: toggleBtn,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                    className: "button__text",
+                    children: "Save"
+                  })
+                })]
+              })]
+            })
+          })]
+        })
+      })
     })]
   });
 }
@@ -7143,18 +7304,24 @@ function CompanyDetails(_ref) {
 function QuotationAddress(_ref2) {
   var props = _ref2.props;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      toggle = _useState6[0],
+      setToggle = _useState6[1];
+
   var randNumber = '' + Math.random();
   var quotationNo = randNumber.substr(randNumber.length - 5);
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     quotation_id: props.auth.user.id,
     quotation_to: "",
     quotation_date: "",
     quotation_number: quotationNo
   }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      address = _useState4[0],
-      setAddress = _useState4[1];
+      _useState8 = _slicedToArray(_useState7, 2),
+      address = _useState8[0],
+      setAddress = _useState8[1];
 
   var getInput = function getInput(e) {
     return setAddress(_objectSpread(_objectSpread({}, address), {}, _defineProperty({}, e.target.name, e.target.value)));
@@ -7166,29 +7333,87 @@ function QuotationAddress(_ref2) {
     return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postAddress)(param));
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "quotation_receipient",
-      children: "Quotation Receipient"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "quotation_receipient",
-      onChange: function onChange(e) {
-        return getInput(e);
-      },
-      name: "quotation_to",
-      type: "text"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "quotation_date"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "quotation_date",
-      name: "quotation_date",
-      onChange: function onChange(e) {
-        return getInput(e);
-      },
-      type: "date"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      type: "submit",
-      onClick: sendData
+  var toggleBody = function toggleBody() {
+    var toggleBody = document.getElementsByClassName('toggle-body-2')[0];
+    var toggleBodyOn = document.getElementsByClassName('toggle-body-on-1')[0];
+    var toggleSpan = document.getElementsByClassName('font-open-close-2')[0];
+
+    if (toggle) {
+      toggleBody.className = 'toggle-body-on-1';
+      toggleSpan.textContent = '+';
+      setToggle(false);
+    } else {
+      toggleBodyOn.className = 'toggle-body-2';
+      toggleSpan.textContent = '-';
+      setToggle(true);
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      onClick: toggleBody,
+      className: "toggle-parent bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative",
+      role: "alert",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+        className: "font-bold",
+        children: "Enter Receipient Details"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "font-open-close-2",
+        children: "-"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "toggle-body-2",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "w-full max-w-xs",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 rounded",
+          role: "alert",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+            className: "font-bold",
+            children: "Receipient Information"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+            className: "text-sm",
+            children: "Information to where the quoatation is addressed to"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "mb-4",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+              className: "block text-gray-700 text-sm font-bold mb-2",
+              htmlFor: "quotation_receipient",
+              children: "Quotation Receipient"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+              className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+              id: "quotation_receipient",
+              onChange: function onChange(e) {
+                return getInput(e);
+              },
+              name: "quotation_to",
+              type: "text"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "mb-4",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+              className: "block text-gray-700 text-sm font-bold mb-2",
+              htmlFor: "quotation_date",
+              children: "Date"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+              className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+              id: "quotation_date",
+              name: "quotation_date",
+              onChange: function onChange(e) {
+                return getInput(e);
+              },
+              type: "date"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+            className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
+            type: "submit",
+            onClick: sendData
+          })]
+        })]
+      })
     })]
   });
 }
@@ -7197,15 +7422,20 @@ function PostProductDetails(_ref3) {
   var props = _ref3.props;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState10 = _slicedToArray(_useState9, 2),
+      toggle = _useState10[0],
+      setToggle = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     product_id: props.auth.user.id,
     product_quantity: "",
     product_description: "",
     product_unit_price: ""
   }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      product = _useState6[0],
-      setProduct = _useState6[1];
+      _useState12 = _slicedToArray(_useState11, 2),
+      product = _useState12[0],
+      setProduct = _useState12[1];
 
   var getInput = function getInput(e) {
     return setProduct(_objectSpread(_objectSpread({}, product), {}, _defineProperty({}, e.target.name, e.target.value)));
@@ -7217,61 +7447,202 @@ function PostProductDetails(_ref3) {
     return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postProduct)(param));
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "product_quantity",
-      children: "Quantity"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "product_quantity",
-      name: "product_quantity",
-      type: "number",
-      onChange: function onChange(e) {
-        return getInput(e);
-      }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "product_description",
-      children: "Description"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "product_description",
-      name: "product_description",
-      type: "text",
-      onChange: function onChange(e) {
-        return getInput(e);
-      }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-      htmlFor: "product_unit_price",
-      children: "Unit Price"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "product_unit_price",
-      name: "product_unit_price",
-      type: "number",
-      onChange: function onChange(e) {
-        return getInput(e);
-      }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      type: "submit",
-      onClick: sendData
+  var toggleBody = function toggleBody() {
+    var toggleBody = document.getElementsByClassName('toggle-body-3')[0];
+    var toggleBodyOn = document.getElementsByClassName('toggle-body-on-2')[0];
+    var toggleSpan = document.getElementsByClassName('font-open-close-3')[0];
+
+    if (toggle) {
+      toggleBody.className = 'toggle-body-on-2';
+      toggleSpan.textContent = '+';
+      setToggle(false);
+    } else {
+      toggleBodyOn.className = 'toggle-body-3';
+      toggleSpan.textContent = '-';
+      setToggle(true);
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      onClick: toggleBody,
+      className: "toggle-parent bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative",
+      role: "alert",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+        className: "font-bold",
+        children: "Enter Receipient Details"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "font-open-close-3",
+        children: "-"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "toggle-body-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "w-full max-w-xs",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 rounded",
+          role: "alert",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+            className: "font-bold",
+            children: "Product Details"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+            className: "text-sm",
+            children: "Add Quantity of your item, Description of your quotation and Unit price, We will do the hard work and calculate for you the total"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+            className: "block text-gray-700 text-sm font-bold mb-2",
+            htmlFor: "product_quantity",
+            children: "Quantity"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+            className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+            id: "product_quantity",
+            name: "product_quantity",
+            type: "number",
+            onChange: function onChange(e) {
+              return getInput(e);
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+            className: "block text-gray-700 text-sm font-bold mb-2",
+            htmlFor: "product_description",
+            children: "Description"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+            className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+            id: "product_description",
+            name: "product_description",
+            type: "text",
+            onChange: function onChange(e) {
+              return getInput(e);
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+            className: "block text-gray-700 text-sm font-bold mb-2",
+            htmlFor: "product_unit_price",
+            children: "Unit Price"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+            className: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+            id: "product_unit_price",
+            name: "product_unit_price",
+            type: "number",
+            onChange: function onChange(e) {
+              return getInput(e);
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+            className: "bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+            type: "submit",
+            value: "Add",
+            onClick: sendData
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(PostTotal, {
+            props: props
+          })]
+        })]
+      })
     })]
   });
 }
 
-function PostTotal() {
+function PostTotal(_ref4) {
+  var props = _ref4.props;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
 
   var sendData = function sendData() {
-    return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postTotal)());
-  };
+    return dispatch((0,_Components_Reducer_RootReducer__WEBPACK_IMPORTED_MODULE_4__.postTotal)(props.auth.user.id));
+  }; // const generatePdf = () => dispatch(downloadPdf());
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+
+  console.log();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "w-full max-w-xs",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
       htmlFor: "post_total"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      id: "post_total",
-      type: "submit",
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+      className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+      type: "button",
+      value: "Generate PDF",
+      id: "post_tota",
       onClick: sendData
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+      href: "/api/download?id=".concat(props.auth.user.id),
+      target: "_blank",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
+        className: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("svg", {
+          className: "fill-current w-4 h-4 mr-2",
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 20 20",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("path", {
+            d: "M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          children: "Download"
+        })]
+      })
     })]
   });
-}
+} // function Modal(){
+//     return (
+//          <div class="w-full max-w-lg">
+//               <PostTotal/>
+//                     <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+//                             <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+//                             <span>Download</span>
+//                     </button>
+//                 <div class="flex flex-wrap -mx-3 mb-6">
+//                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+//                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+//                         First Name
+//                     </label>
+//                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane"/>
+//                     <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+//                     </div>
+//                     <div class="w-full md:w-1/2 px-3">
+//                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+//                         Last Name
+//                     </label>
+//                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe"/>
+//                     </div>
+//                 </div>
+//                 <div class="flex flex-wrap -mx-3 mb-6">
+//                     <div class="w-full px-3">
+//                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+//                         Password
+//                     </label>
+//                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************"/>
+//                     <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+//                     </div>
+//                 </div>
+//                 <div class="flex flex-wrap -mx-3 mb-2">
+//                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+//                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+//                         City
+//                     </label>
+//                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque"/>
+//                     </div>
+//                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+//                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+//                         State
+//                     </label>
+//                     <div className="relative">
+//                         <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+//                         <option>New Mexico</option>
+//                         <option>Missouri</option>
+//                         <option>Texas</option>
+//                         </select>
+//                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+//                         <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+//                         </div>
+//                     </div>
+//                     </div>
+//                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+//                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+//                         Zip
+//                     </label>
+//                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210"/>
+//                     </div>
+//                 </div>
+//         </div>
+//     )
+// }
 
 /***/ }),
 

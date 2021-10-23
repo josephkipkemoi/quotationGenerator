@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\QuotationTotal;
-
+ use Illuminate\Http\Request;
+ 
 class QuotationTotalController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     { 
-        return QuotationTotal::findOrFail(1);
+        return QuotationTotal::where('quotation_totals_id',$request->input('id'))->latest()->get();
     }
 
-    public function store(ProductTotalController $product, QuotationTotal $quotation,CompanyController $company)
+    public function store(Request $request,ProductTotalController $product, QuotationTotal $quotation,CompanyController $company)
     {    
-       return QuotationTotal::create($quotation->quotationArithmetic($product->index(),$company->index()));
+        // 
+       return QuotationTotal::updateOrCreate($quotation->quotationArithmetic($product->index($request),$company->index($request)),['quotation_totals_id' => $request->input('id')]);
     }
 }

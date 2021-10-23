@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\User;
+use App\Models\CompanyName;
 use Illuminate\Http\Request;
-use Svg\Tag\Rect;
 
-class ProductTotalController extends Controller
+class CompanyNameController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return ["total_sum" => Product::where('product_id',$request->input('id'))->get()->sum('product_total'), "products" =>  User::filterProduct(User::find($request->input('id'))->quotation()->get())];
+        //
     }
 
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -27,10 +33,10 @@ class ProductTotalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request, CompanyName $company_name)
     {
         //
-        Product::updateOrCreate($product->setTotalPrice($product->validateProduct($request,$product)->all(),$product));
+       return $company_name->validate($request);
     }
 
     /**
@@ -39,10 +45,9 @@ class ProductTotalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, $id)
+    public function show($id)
     {
- 
-          return ["total_sum" => Product::find($id)->userQuotation()->sum('product_total'), "products" =>  $user->filterProduct(User::find($id)->quotation()->get())];
+        //
     }
 
     /**
@@ -65,7 +70,7 @@ class ProductTotalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Product::updateDetails($request,Product::find($id));
+        //
     }
 
     /**
@@ -77,6 +82,5 @@ class ProductTotalController extends Controller
     public function destroy($id)
     {
         //
-        Product::find($id)->truncate();
     }
 }

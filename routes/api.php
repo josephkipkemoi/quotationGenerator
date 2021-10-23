@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyNameController;
 use App\Http\Controllers\DownloadPdfController;
 use App\Http\Controllers\ProductTotalController;
 use App\Http\Controllers\QuotationController;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/quotation', QuotationController::class);
 Route::resource('/product', ProductTotalController::class);
 Route::resource('/company', CompanyController::class);
+Route::resource('/company_name', CompanyNameController::class);
 Route::resource('/quotation_total', QuotationTotalController::class);
 Route::resource('/download', DownloadPdfController::class);
 
