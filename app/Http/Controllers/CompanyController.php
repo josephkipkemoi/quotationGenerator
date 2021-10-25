@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyDetailsRequest;
 use App\Models\Company;
+use App\Models\CompanyName;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -16,7 +17,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         //
-        return Company::findOrFail($request);     
+        return Company::findOrFail($request)->first();     
     }
 
     /**
@@ -27,13 +28,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request, Company $company)
     {
- 
-       return Company::updateOrCreate($company->validateCompany($request)->all());
-   
-     }
+        return $company->validate($request);
+    }
 
 
-
+    public function show($id)
+    {
+        return Company::where('company_id', $id)->get();
+    }
 
 
 }

@@ -18,13 +18,15 @@ class Company extends Model
         'created_at','updated_at'
     ];
 
-    static function validateCompany($request)
+    static function validate($request)
     {
 
-         $request->validate(['company_logo_url' => 'required', 'company_slogan' => 'required',
+        $request->validate(['company_logo_url' => 'required', 'company_slogan' => 'required',
                             'company_web_url' => 'required', 'company_email' => 'required','company_id' => 'required']);
   
-        return $request;
+        $company_details = Company::create($request->all());
+        
+        return $company_details;
     }
     
 }
