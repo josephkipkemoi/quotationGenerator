@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyName;
+use App\Models\User;
 use Illuminate\Http\Request;
+use PharIo\Manifest\CopyrightElement;
+
+use function PHPUnit\Framework\throwException;
 
 class CompanyNameController extends Controller
 {
@@ -12,10 +16,11 @@ class CompanyNameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request,CompanyName $company, User $user)
     {
-        //
-    }
+        // dd($request->company_id);
+        return $company->find($request->company_id);
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -33,10 +38,10 @@ class CompanyNameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, CompanyName $company_name)
+    public function store(Request $request, CompanyName $company)
     {
         //
-       return $company_name->validate($request);
+       return $company->validate($request);
     }
 
     /**
@@ -45,9 +50,11 @@ class CompanyNameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, CompanyName $company)
     {
         //
+        return ['company_names' => $company->where('relate_company_id',$id)->get()->fresh()->makeHidden(['created_at', 'updated_at','relate_company_id'])->toArray()];
+  
     }
 
     /**

@@ -15,6 +15,7 @@ class CreateCompanyNamesTable extends Migration
     {
         Schema::create('company_names', function (Blueprint $table) {
             $table->id();
+            $table->string('relate_company_id')->references('id')->on('users');
 
             $table->string('company_name');
 
