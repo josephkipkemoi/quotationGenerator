@@ -14,10 +14,11 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Company $company)
     {
         //
-        return Company::findOrFail($request)->first();     
+        // dd($company->find(1)->company_details()->where('id',2)->get()->toArray());
+        return  $company->company_details()->find($request->company_detail);     
     }
 
     /**

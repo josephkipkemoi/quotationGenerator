@@ -28,5 +28,10 @@ class Company extends Model
         
         return $company_details;
     }
+
+    public function company_details()
+    {
+        return $this->belongsTo(CompanyName::class,'company_id','id');
+    }
     
 }

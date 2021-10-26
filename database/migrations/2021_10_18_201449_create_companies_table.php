@@ -15,7 +15,7 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('company_id')->references('id')->on('users');
+            $table->string('company_id')->references('id')->on('company_names');
 
             $table->string('company_logo_url');
             $table->string('company_slogan');

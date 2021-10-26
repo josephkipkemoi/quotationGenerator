@@ -18,9 +18,11 @@ class CompanyNameTest extends TestCase
      */
     public function test_user_can_get_all_company_names_registered()
     {
-        $response = $this->get('api/company_name/1');
+        $response = $this->get('api/company_name?user_id=1');
 
         $response->assertOk();
+
+        $response->assertJsonCount(2);
 
         $response->assertJsonStructure([
             'company_names' => [
@@ -29,7 +31,7 @@ class CompanyNameTest extends TestCase
                     'company_name'
                 ]
             ]
-         ]);
+         ]);        
     }
 
     public function test_user_can_post_company_name()
@@ -40,7 +42,7 @@ class CompanyNameTest extends TestCase
         ]);
         $response = $this->post('/api/company_name', [
             'relate_company_id' => 1,
-            'company_name' => 'CYNKEM LIMITED COMPANY',
+            'company_name' => 'CYNKEM LIMITED COMPANY KENYA',
         ]);
 
         $response->assertCreated();
@@ -48,11 +50,11 @@ class CompanyNameTest extends TestCase
 
     public function test_screen_can_render_company_name_by_id()
     {
-        $response = $this->get('/api/company_name?company_id=2');
+        $response = $this->get('/api/company_name/2?user_id=1');
 
         $response->assertJson(fn(AssertableJson $json) => 
             $json->where('id',2)
-            ->where('company_name' , 'CYNKEM LIMITED COMPANY')
+            ->where('company_name' , 'CYNKEM LIMITED COMPANY KENYA')
             ->etc()
         );
     }

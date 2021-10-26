@@ -26,7 +26,7 @@ class CompanyTest extends TestCase
         ]);
 
         $response = $this->post('api/company', [
-            'company_id' => 1,
+            'company_id' => 2,
             'company_logo_url' => 'some other url',
             'company_slogan' => 'Together on the move',
             'company_address' => 'P.O.Box 123 - Nairobi',
@@ -56,7 +56,7 @@ class CompanyTest extends TestCase
 
         $response->assertOk();
 
-        $response->assertJsonCount(2);
+        $response->assertJsonCount(1);
     }
 
 
@@ -64,6 +64,6 @@ class CompanyTest extends TestCase
     {
         $response = $this->get('api/company/2');
 
-        $response->assertJsonCount(0);
+        $response->assertJsonCount(1);
     }
 }

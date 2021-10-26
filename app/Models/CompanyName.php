@@ -15,7 +15,7 @@ class CompanyName extends Model
     static function validate($request)
     {
         $request->validate([
-            'company_name' => 'required', 'relate_company_id' => 'required'
+            'company_name' => 'required','relate_company_id' => 'required'
         ]);
 
         $company_name = CompanyName::create([
@@ -26,8 +26,8 @@ class CompanyName extends Model
         return $company_name;
     }
 
-    public function relateCompany()
+    public function relate_company()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'relate_company_id','id');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyName;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PharIo\Manifest\CopyrightElement;
@@ -16,10 +17,11 @@ class CompanyNameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,CompanyName $company, User $user)
+    public function index(Request $request,CompanyName $company_name, User $user, Company $company)
     {
-        // dd($request->company_id);
-        return $company->find($request->company_id);
+
+       return ["company_names" => $user->find($request->user_id)->company_name()->get()->toArray()];
+      
      }
 
     /**
@@ -50,10 +52,12 @@ class CompanyNameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, CompanyName $company)
+    public function show(Request $request,$id, CompanyName $company, User $user)
     {
         //
-        return ['company_names' => $company->where('relate_company_id',$id)->get()->fresh()->makeHidden(['created_at', 'updated_at','relate_company_id'])->toArray()];
+        // dd($request->user_id);
+        return $user->find($request->user_id)->company_name()->where('id', $id)->first();
+        // return $company->where('id',$id)->get()->fresh()->makeHidden(['created_at', 'updated_at','relate_company_id'])->first();
   
     }
 
