@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/quotation', QuotationController::class);
+Route::resource('/quotation_address', QuotationController::class);
 Route::resource('/product', ProductTotalController::class);
 Route::resource('/company', CompanyController::class);
 Route::resource('/company_name', CompanyNameController::class);

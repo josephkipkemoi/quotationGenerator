@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Quotation;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class QuotationController extends Controller
 {
@@ -12,10 +13,12 @@ class QuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Quotation $quotation)
     {
         //
-        return Quotation::latest()->first();
+          return $quotation->find($request->company_id)->quotation()->get();
+ 
+        // return Quotation::where('quotation_id',$request->user_id)->latest()->get();
     }
 
     /**
@@ -36,7 +39,7 @@ class QuotationController extends Controller
      */
     public function store(Request $request, Quotation $quote)
     {
-      return Quotation::updateOrCreate($quote->validateQuotation($request)->all());
+        return $quote->validate($request);
      }
 
     /**

@@ -16,7 +16,7 @@ class CreateQuotationsTable extends Migration
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
 
-            $table->string('quotation_id')->references('id')->on('users');
+            $table->string('quotation_id')->references('id')->on('company_names');
 
             $table->string('quotation_to');
             $table->string('quotation_date');

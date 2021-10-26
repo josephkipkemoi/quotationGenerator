@@ -35,7 +35,6 @@ class CompanyTest extends TestCase
         ]);
 
         $response->assertCreated();
-
     }
 
     public function test_user_can_get_most_recent_company_details_registered()

@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class,'product_id');
     }
 
+    public function quotation_address()
+    {
+        return $this->hasMany(Quotation::class,'quotation_id');
+    }
+
     static function filterProduct($products)
     {
         $arr = [];
