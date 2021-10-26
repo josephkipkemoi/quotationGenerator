@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->hasMany(Quotation::class,'quotation_id');
     }
 
+    public function company_address()
+    {
+        return $this->belongsTo(Company::class,'id','company_id');
+    }
+
     static function filterProduct($products)
     {
         $arr = [];

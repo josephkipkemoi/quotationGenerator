@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCompanyDetailsRequest;
 use App\Models\Company;
 use App\Models\CompanyName;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -14,11 +15,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Company $company)
+    public function index(Request $request, Company $company, User $user)
     {
         //
-        // dd($company->find(1)->company_details()->where('id',2)->get()->toArray());
-        return  $company->company_details()->find($request->company_detail);     
+         return $user->find($request->company_detail)->company_address()->latest()->first()->makeHidden('created_at','updated_at','company_id')->attributesToArray();
     }
 
     /**
@@ -35,7 +35,7 @@ class CompanyController extends Controller
 
     public function show($id)
     {
-        return Company::where('company_id', $id)->get();
+        return User::find($id)->company_address()->get();
     }
 
 

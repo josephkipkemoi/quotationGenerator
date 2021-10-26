@@ -20,7 +20,7 @@ class CompanyNameController extends Controller
     public function index(Request $request,CompanyName $company_name, User $user, Company $company)
     {
 
-       return ["company_names" => $user->find($request->user_id)->company_name()->get()->toArray()];
+       return ["company_names" => $user->find($request->user_id)->company_name()->get()->makeHidden(['created_at', 'updated_at','relate_company_id'])->toArray()];
       
      }
 
@@ -52,13 +52,10 @@ class CompanyNameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id, CompanyName $company, User $user)
+    public function show(Request $request,$id, User $user)
     {
         //
-        // dd($request->user_id);
-        return $user->find($request->user_id)->company_name()->where('id', $id)->first();
-        // return $company->where('id',$id)->get()->fresh()->makeHidden(['created_at', 'updated_at','relate_company_id'])->first();
-  
+        return $user->find($request->user_id)->company_name()->where('id', $id)->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);  
     }
 
     /**
