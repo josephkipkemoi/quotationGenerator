@@ -42,9 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-     public function quotation()
+     public function company_name()
     {
-        return $this->hasMany(Product::class,'product_id');
+        return $this->belongsTo(CompanyName::class,'id','relate_company_id');
+    }
+
+    public function quotation_address()
+    {
+        return $this->hasMany(Quotation::class,'quotation_id');
+    }
+
+    public function company_address()
+    {
+        return $this->belongsTo(Company::class,'id','company_id');
     }
 
     static function filterProduct($products)

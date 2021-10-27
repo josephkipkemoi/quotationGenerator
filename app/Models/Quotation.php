@@ -19,14 +19,21 @@ class Quotation extends Model
     ];
 
     protected $visible = [
-        'quotation_to','quotation_date','quotation_number'
+        'quotation_to','quotation_date','quotation_number','quotation_id'
     ];
     
-    static function validateQuotation($request)
+    static function validate($request)
     {
          $request->validate(['quotation_id' => 'required', 'quotation_to' => 'required',
                             'quotation_date' => 'required', 'quotation_number' => 'required']);
         
-        return $request;
+        $quotation_address = Quotation::create($request->all());
+
+        return $quotation_address;
+    }
+
+    public function quotation()
+    {
+        return $this->belongsTo(Quotation::class,'id');
     }
 }
