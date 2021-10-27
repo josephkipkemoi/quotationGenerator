@@ -39,6 +39,6 @@ class Quotation extends Model
 
     public function product_details()
     {
-        return $this->hasMany(Product::class, 'id', 'product_id');
+        return $this->hasMany(Product::class, 'product_id', 'product_id');
     }
 }
