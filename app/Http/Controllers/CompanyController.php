@@ -35,7 +35,7 @@ class CompanyController extends Controller
 
     public function show($id)
     {
-        return User::find($id)->company_address()->get();
+        return User::find($id)->company_address()->get()->makeHidden(['company_id','id']);
     }
 
 
