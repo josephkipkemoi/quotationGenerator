@@ -56,6 +56,11 @@ class Product extends Model
          return $this->belongsTo(Product::class,'id','product_id');
      }
 
+    public function quotation_total()
+    {
+        return $this->belongsTo(Product::class,'id','product_id');
+    }
+
      public function latestQuotation()
     {
         return $this->hasOne(Product::class, 'product_id')->latestOfMany();

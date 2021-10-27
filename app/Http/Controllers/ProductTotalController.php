@@ -17,8 +17,7 @@ class ProductTotalController extends Controller
      */
     public function index(Request $request, Product $product)
     {
-        return ["total_sum" => $product->find($request->quotation_address)->user_quotation()->get()->sum('product_total'), 
-                "products" => $product->find($request->quotation_address)->user_quotation()->get()->makeHidden('product_id')->toArray()];
+        return ["products" => $product->find($request->quotation_address)->user_quotation()->get()->makeHidden('product_id')->toArray()];
         // 
     }
 

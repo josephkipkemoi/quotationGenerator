@@ -24,20 +24,23 @@ class QuotationTotal extends Model
         'created_at','updated_at'
     ];
     
-    static function quotationArithmetic($amount,$company)
+    static function quotationArithmetic($amount, $company_id)
     {
-           $amount = $amount['total_sum'];
-        $company_id = $company[0]->company_id;
         $set_vat = 0.16;
         $vat_amount = $amount * $set_vat;
         $sub_total = $amount - $vat_amount;
         
-
-          return [
+           return [
                 'quotation_totals_id' => $company_id,
                 'quotation_vat' => $vat_amount, 
                 'quotation_sub_total' => $sub_total,
                 'quotation_total' => $amount
             ];
+
+    }
+
+    public function quotation_total()
+    {
+        return $this->belongsTo(QuotationTotal::class,'id','quotation_totals_id');
     }
 }
