@@ -16,10 +16,8 @@ class QuotationController extends Controller
     public function index(Request $request, Quotation $quotation)
     {
         //
-          return $quotation->find($request->company_id)->quotation()->get();
- 
-        // return Quotation::where('quotation_id',$request->user_id)->latest()->get();
-    }
+          return $quotation->find($request->company_id)->quotation_address()->latest()->first();
+     }
 
     /**
      * Show the form for creating a new resource.
