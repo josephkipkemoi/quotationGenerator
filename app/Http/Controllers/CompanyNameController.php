@@ -17,11 +17,9 @@ class CompanyNameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,CompanyName $company_name, User $user, Company $company)
+    public function index(Request $request,CompanyName $company_name)
     {
-
-       return ["company_names" => $user->find($request->user_id)->company_name()->get()->makeHidden(['created_at', 'updated_at','relate_company_id'])->toArray()];
-      
+       return $company_name->find($request->user_id)->relate_company()->latest()->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);
      }
 
     /**

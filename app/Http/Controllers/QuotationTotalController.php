@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\QuotationTotal;
  use Illuminate\Http\Request;
  
@@ -10,12 +11,13 @@ class QuotationTotalController extends Controller
     //
     public function index(Request $request)
     { 
-        return QuotationTotal::where('quotation_totals_id',$request->input('id'))->latest()->get();
+        return QuotationTotal::find($request->quotation_total_id)->quotation_total()->get()->first();
     }
 
-    public function store(Request $request,ProductTotalController $product, QuotationTotal $quotation,CompanyController $company)
+    public function store(Request $request,Product $product, QuotationTotal $quotation)
     {    
         // 
-       return QuotationTotal::updateOrCreate($quotation->quotationArithmetic($product->index($request),$company->index($request)),['quotation_totals_id' => $request->input('id')]);
+       return QuotationTotal::create($quotation->quotationArithmetic($product->find($request->product_id)->quotation_total()->sum('product_total'),
+                                        $product->find($request->product_id)->quotation_total()->get()->first()->product_id));
     }
 }

@@ -28,6 +28,6 @@ class CompanyName extends Model
 
     public function relate_company()
     {
-        return $this->belongsTo(User::class, 'relate_company_id','id');
+        return $this->belongsTo(CompanyName::class, 'id','relate_company_id');
     }
 }

@@ -19,7 +19,7 @@ class Quotation extends Model
     ];
 
     protected $visible = [
-        'quotation_to','quotation_date','quotation_number','quotation_id'
+        'quotation_to','quotation_date','quotation_number'
     ];
     
     static function validate($request)
@@ -32,8 +32,13 @@ class Quotation extends Model
         return $quotation_address;
     }
 
-    public function quotation()
+    public function quotation_address()
     {
-        return $this->belongsTo(Quotation::class,'id');
+        return $this->belongsTo(Quotation::class,'id','quotation_id');
+    }
+
+    public function product_details()
+    {
+        return $this->hasMany(Product::class, 'product_id', 'product_id');
     }
 }

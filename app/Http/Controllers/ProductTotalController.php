@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Quotation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Svg\Tag\Rect;
@@ -14,9 +15,10 @@ class ProductTotalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Product $product)
     {
-        return ["total_sum" => Product::where('product_id',$request->input('id'))->get()->sum('product_total'), "products" =>  User::filterProduct(User::find($request->input('id'))->quotation()->get())];
+        return ["products" => $product->find($request->quotation_address)->user_quotation()->get()->makeHidden('product_id')->toArray()];
+        // 
     }
 
 

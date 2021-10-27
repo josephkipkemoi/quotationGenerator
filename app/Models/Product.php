@@ -51,10 +51,15 @@ class Product extends Model
         return $product->update($request->only(['product_quantity','product_description','product_unit_price','product_total']));
      }
 
-     public function userQuotation()
+     public function user_quotation()
      {
-         return $this->hasMany(Product::class,'product_id');
+         return $this->belongsTo(Product::class,'id','product_id');
      }
+
+    public function quotation_total()
+    {
+        return $this->belongsTo(Product::class,'id','product_id');
+    }
 
      public function latestQuotation()
     {
