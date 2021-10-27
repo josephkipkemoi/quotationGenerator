@@ -33,7 +33,10 @@ caption {
 <body>
 
 <div class="quotation_header">
-<h1>LOLA INVESTMENTS COMPANY</h1>
+@foreach($company_name as $companyName)
+<h1>{{$companyName}}</h1>
+@endforeach
+
      @foreach($company_details as $company)
          <span>{{$company}}</span><br/>
     @endforeach 
@@ -67,9 +70,10 @@ caption {
         <th>Unit Price</th>
         <th>Total</th>
 </tr>
+ 
 @foreach($products as $product)
 <tr>
-    @foreach($product as $prod)
+     @foreach($product as $prod)
             <td>{{$prod}}</td>
     @endforeach
 </tr>
