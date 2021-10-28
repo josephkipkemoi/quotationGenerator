@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function company_address()
     {
-        return $this->belongsTo(Company::class,'id','company_id');
+        return $this->belongsTo(Company::class,'id','company_id')->latest();
     }
 
     static function filterProduct($products)
@@ -69,5 +69,5 @@ class User extends Authenticatable
          return $arr;
     }
 
-   
+
 }

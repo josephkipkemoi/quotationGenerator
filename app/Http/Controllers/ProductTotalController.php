@@ -17,8 +17,8 @@ class ProductTotalController extends Controller
      */
     public function index(Request $request, Product $product)
     {
-        return ["products" => $product->find($request->quotation_address)->user_quotation()->get()->makeHidden('product_id')->toArray()];
-        // 
+        return ["products" => $product->find($request->quotation_address)->user_quotation];
+        //
     }
 
 
@@ -41,10 +41,10 @@ class ProductTotalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, $id)
+    public function show($id)
     {
- 
-          return ["total_sum" => Product::find($id)->userQuotation()->sum('product_total'), "products" =>  $user->filterProduct(User::find($id)->quotation()->get())];
+
+          return ["total_sum" => Product::find($id)->user_quotation->sum('product_total'), "products" =>  Product::find($id)->user_quotation];
     }
 
     /**
