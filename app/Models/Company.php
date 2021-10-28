@@ -15,7 +15,7 @@ class Company extends Model
     ];
 
     protected $hidden = [
-        'created_at','updated_at'
+        'created_at','updated_at','company_id'
     ];
 
     static function validate($request)
@@ -23,9 +23,9 @@ class Company extends Model
 
         $request->validate(['company_logo_url' => 'required', 'company_slogan' => 'required',
                             'company_web_url' => 'required', 'company_email' => 'required','company_id' => 'required']);
-  
+
         $company_details = Company::create($request->all());
-        
+
         return $company_details;
     }
 
@@ -33,5 +33,5 @@ class Company extends Model
     {
         return $this->belongsTo(Company::class,'company_id','id');
     }
-    
+
 }

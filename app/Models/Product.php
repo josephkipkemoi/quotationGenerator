@@ -19,7 +19,7 @@ class Product extends Model
     ];
 
     protected $hidden = [
-        'created_at','updated_at'
+        'created_at','updated_at','product_id'
     ];
 
      static function validateProduct($request)
@@ -42,18 +42,18 @@ class Product extends Model
     }
 
     static function updateDetails($request, $product)
-    {   
+    {
         $productQty = $request['product_quantity'];
         $productUnitPrice = $request['product_unit_price'];
         $prodTotal = $productQty * $productUnitPrice;
         $request['product_total']  = $prodTotal;
- 
+
         return $product->update($request->only(['product_quantity','product_description','product_unit_price','product_total']));
      }
 
      public function user_quotation()
      {
-         return $this->belongsTo(Product::class,'id','product_id');
+         return $this->hasMany(Product::class);
      }
 
     public function quotation_total()
@@ -63,7 +63,11 @@ class Product extends Model
 
      public function latestQuotation()
     {
-        return $this->hasOne(Product::class, 'product_id')->latestOfMany();
+        return $this->hasOne(QuotationTotal::class, 'product_id','quotation_totals_id');
+    }
+
+    public function get_quotation()
+    {
+        return $this->belongsTo(QuotationTotal::class,'product_id','quotation_totals_id');
     }
 }
- 

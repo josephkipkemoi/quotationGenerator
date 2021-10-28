@@ -15,10 +15,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Company $company, User $user)
+    public function index(Request $request, User $user)
     {
         //
-         return $user->find($request->company_detail)->company_address()->latest()->first()->makeHidden('created_at','updated_at','company_id')->attributesToArray();
+        return $user->find($request->company_detail)->company_address;
     }
 
     /**
@@ -35,7 +35,7 @@ class CompanyController extends Controller
 
     public function show($id)
     {
-        return User::find($id)->company_address()->get()->makeHidden(['company_id','id']);
+        return User::find($id)->company_address;
     }
 
 
