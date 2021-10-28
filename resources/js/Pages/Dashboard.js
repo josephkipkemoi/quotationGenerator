@@ -27,17 +27,17 @@ export default function Dashboard(props) {
                                         <div className="flex -mx-2">
                                             <div className="w-1/3 px-2">
                                                 <div>
-                                                    <CompanyDetails props={props}/> 
+                                                    <CompanyDetails props={props}/>
                                                 </div>
                                             </div>
                                             <div className="w-1/3 px-2">
                                                 <div>
-                                                    <QuotationAddress props={props}/> 
+                                                    <QuotationAddress props={props}/>
                                                 </div>
                                             </div>
                                             <div className="w-1/3 px-2">
                                                 <div>
-                                                    <PostProductDetails props={props}/>  
+                                                    <PostProductDetails props={props}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -46,12 +46,12 @@ export default function Dashboard(props) {
                     </div>
                 </div>
              </div>
-     
 
 
-           
+
+
               {/* <Modal/> */}
-    
+
           </Authenticated>
     );
 }
@@ -71,12 +71,12 @@ function CompanyDetails({props}){
         company_web_url:"",
         company_email:""
     });
-  
- 
+
+
     const getInput = e => setCompany({...company, [e.target.name]:e.target.value})
 
-    const param = new URLSearchParams(company).toString(); 
- 
+    const param = new URLSearchParams(company).toString();
+
     const sendData = () => dispatch(postCompany(param));
 
     const toggleBtn = () => {
@@ -87,7 +87,7 @@ function CompanyDetails({props}){
         const toggleBody = document.getElementsByClassName('toggle-body')[0];
         const toggleBodyOn = document.getElementsByClassName('toggle-body-on')[0];
         const toggleSpan = document.getElementsByClassName('font-open-close')[0];
-        
+
         if(toggle) {
             toggleBody.className = 'toggle-body-on';
             toggleSpan.textContent = '+';
@@ -97,7 +97,7 @@ function CompanyDetails({props}){
             toggleSpan.textContent = '-';
             setToggle(true)
         }
-      
+
     }
     return (
         <div>
@@ -144,13 +144,13 @@ function CompanyDetails({props}){
                         </button>
                    </div>
                 </div>
-                
-            </div>   
+
+            </div>
         </div>
         </div>
         </div>
         </div>
-       
+
     )
 }
 
@@ -160,7 +160,7 @@ function QuotationAddress({props}){
 
     let randNumber = '' + Math.random();
     const quotationNo = randNumber.substr(randNumber.length - 5);
-   
+
     const [address, setAddress] = useState({
         quotation_id:props.auth.user.id,
         quotation_to:"",
@@ -170,7 +170,7 @@ function QuotationAddress({props}){
 
     const getInput = e => setAddress({...address, [e.target.name]: e.target.value});
 
-    
+
     const param = new URLSearchParams(address).toString();
 
     const sendData = () => dispatch(postAddress(param));
@@ -179,7 +179,7 @@ function QuotationAddress({props}){
         const toggleBody = document.getElementsByClassName('toggle-body-2')[0];
         const toggleBodyOn = document.getElementsByClassName('toggle-body-on-1')[0];
         const toggleSpan = document.getElementsByClassName('font-open-close-2')[0];
-        
+
         if(toggle) {
             toggleBody.className = 'toggle-body-on-1';
             toggleSpan.textContent = '+';
@@ -189,7 +189,7 @@ function QuotationAddress({props}){
             toggleSpan.textContent = '-';
             setToggle(true)
         }
-      
+
     }
     return (
         <div>
@@ -199,7 +199,7 @@ function QuotationAddress({props}){
             </div>
             <br/>
             <div className="toggle-body-2">
-            <div className="w-full max-w-xs">   
+            <div className="w-full max-w-xs">
                 <div className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 rounded" role="alert">
                     <p className="font-bold">Receipient Information</p>
                     <p className="text-sm">Information to where the quoatation is addressed to</p>
@@ -211,15 +211,15 @@ function QuotationAddress({props}){
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="quotation_date">Date</label>
-                    <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="quotation_date" name="quotation_date" onChange={(e) => getInput(e)} type="date"/> 
-                </div>  
+                    <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="quotation_date" name="quotation_date" onChange={(e) => getInput(e)} type="date"/>
+                </div>
                     <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" onClick={sendData}/>
-                
+
                 </div>
             </div>
         </div>
         </div>
-      
+
     )
 }
 
@@ -245,7 +245,7 @@ function PostProductDetails({props}){
         const toggleBody = document.getElementsByClassName('toggle-body-3')[0];
         const toggleBodyOn = document.getElementsByClassName('toggle-body-on-2')[0];
         const toggleSpan = document.getElementsByClassName('font-open-close-3')[0];
-        
+
         if(toggle) {
             toggleBody.className = 'toggle-body-on-2';
             toggleSpan.textContent = '+';
@@ -255,7 +255,7 @@ function PostProductDetails({props}){
             toggleSpan.textContent = '-';
             setToggle(true)
         }
-      
+
     }
 
     return (
@@ -271,7 +271,7 @@ function PostProductDetails({props}){
                         <p className="font-bold">Product Details</p>
                         <p className="text-sm">Add Quantity of your item, Description of your quotation and Unit price, We will do the hard work and calculate for you the total</p>
                     </div>
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">        
+                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="product_quantity">Quantity</label>
                         <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="product_quantity" name="product_quantity" type="number" onChange={(e) => getInput(e)}/>
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="product_description">Description</label>
@@ -280,14 +280,14 @@ function PostProductDetails({props}){
                         <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="product_unit_price" name="product_unit_price" type="number" onChange={(e) => getInput(e)}/>
                         <input className="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" value="Add" onClick={sendData}/>
                         <PostTotal props={props}/>
-                      
+
                   </div>
 
-            
+
                 </div>
             </div>
         </div>
-        
+
     )
 }
 
@@ -302,13 +302,13 @@ function PostTotal({props}) {
         <div className="w-full max-w-xs">
             <label htmlFor="post_total"></label>
             <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" value="Generate PDF" id="post_tota" onClick={sendData}/>
-            <a href={`/api/download?id=${props.auth.user.id}`} target="_blank">
+            <a href={`/api/download?product_id=${props.auth.user.id}`} target="_blank">
                 <button  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
                                     <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
                                     <span>Download</span>
-                </button>  
+                </button>
             </a>
-          
+
         </div>
     )
 }

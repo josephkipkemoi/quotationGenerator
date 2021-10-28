@@ -5947,7 +5947,7 @@ var postAddress = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/quotation?".concat(url));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/quotation_address?".concat(url));
 
           case 2:
             res = _context2.sent;
@@ -5999,13 +5999,14 @@ var postTotal = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThun
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/quotation_total?id=".concat(id));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/quotation_total?product_id=".concat(id));
 
           case 2:
             res = _context4.sent;
+            console.log(id);
             return _context4.abrupt("return", res.data);
 
-          case 4:
+          case 5:
           case "end":
             return _context4.stop();
         }
@@ -6025,7 +6026,7 @@ var downloadPdf = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/download?id=".concat(id));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/download?product_id=".concat(id));
 
           case 2:
             res = _context5.sent;
@@ -6044,7 +6045,7 @@ var downloadPdf = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
   };
 }());
 var companySlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
-  name: 'quoatation',
+  name: 'quotation',
   initialState: {
     company: [],
     address: [],
@@ -7562,7 +7563,7 @@ function PostTotal(_ref4) {
       id: "post_tota",
       onClick: sendData
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-      href: "/api/download?id=".concat(props.auth.user.id),
+      href: "/api/download?product_id=".concat(props.auth.user.id),
       target: "_blank",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
         className: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center",

@@ -41,7 +41,7 @@ class QuotationTotal extends Model
 
     public function quotation_total_method()
     {
-        return $this->belongsTo(QuotationTotal::class,'id','quotation_totals_id');
+        return $this->belongsTo(QuotationTotal::class,'id','quotation_totals_id')->latest();
     }
 
 }
