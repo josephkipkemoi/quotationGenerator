@@ -12,6 +12,8 @@ class CompanyName extends Model
 
     protected $fillable = ['company_name','relate_company_id'];
 
+    protected $hidden = ['created_at','updated_at','relate_company_id'];
+
     static function validate($request)
     {
         $request->validate([
@@ -28,6 +30,6 @@ class CompanyName extends Model
 
     public function relate_company()
     {
-        return $this->belongsTo(CompanyName::class, 'id','relate_company_id');
+        return $this->belongsTo(CompanyName::class, 'id','relate_company_id')->latest();
     }
 }

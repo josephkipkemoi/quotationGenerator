@@ -19,8 +19,8 @@ class CompanyNameController extends Controller
      */
     public function index(Request $request,CompanyName $company_name)
     {
-       return $company_name->find($request->user_id)->relate_company()->latest()->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);
-     }
+        return $company_name->find($request->user_id)->relate_company;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +53,7 @@ class CompanyNameController extends Controller
     public function show(Request $request,$id, User $user)
     {
         //
-        return $user->find($request->user_id)->company_name()->where('id', $id)->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);  
+        return $user->find($request->user_id)->company_name()->where('id', $id)->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);
     }
 
     /**
