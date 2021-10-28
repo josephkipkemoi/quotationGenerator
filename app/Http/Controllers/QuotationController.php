@@ -16,7 +16,7 @@ class QuotationController extends Controller
     public function index(Request $request, Quotation $quotation)
     {
         //
-          return $quotation->find($request->company_id)->quotation_address()->latest()->first();
+          return $quotation->find($request->company_id)->quotation_address;
      }
 
     /**
