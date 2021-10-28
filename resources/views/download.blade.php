@@ -64,7 +64,6 @@ caption {
 <table>
   <caption>QUOTATION</caption>
 <tr>
-        <th>No</th>
         <th>Quantity</th>
         <th>Description</th>
         <th>Unit Price</th>

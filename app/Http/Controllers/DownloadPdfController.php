@@ -24,7 +24,7 @@ class DownloadPdfController extends Controller
                                     $company_name->find($request->product_id)->relate_company()->latest()->first()->makeHidden('created_at','id','updated_at','relate_company_id')->attributesToArray(),
                                     $company->find($request->product_id)->company_details()->latest()->first()->makeHidden('id','company_id')->attributesToArray(),
                                     $quotation_total->find($request->product_id)->quotation_total()->latest()->first()->makeHidden('id','quotation_totals_id')->attributesToArray(), 
-                                    $product->find($request->product_id)->user_quotation()->get()->toArray()
+                                    $product->find($request->product_id)->user_quotation()->get()->makeHidden(['product_id','id'])->toArray()
                   );
     }
 }
