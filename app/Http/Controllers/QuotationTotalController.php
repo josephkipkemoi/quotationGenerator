@@ -17,7 +17,7 @@ class QuotationTotalController extends Controller
     public function store(Request $request,Product $product, QuotationTotal $quotation)
     {
         //
-       return QuotationTotal::create($quotation->quotationArithmetic($product->find($request->product_id)->quotation_total_method()->sum('product_total'),
-                                        $product->find($request->product_id)->quotation_total_method()->get()->first()->product_id));
+        return QuotationTotal::create($quotation->quotationArithmetic($product->find($request->product_id)->user_quotation->sum('product_total'),
+                                        $product->find($request->product_id)->quotation_total->product_id));
     }
 }
