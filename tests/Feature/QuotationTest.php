@@ -9,6 +9,8 @@ use Tests\TestCase;
 
 class QuotationTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -38,7 +40,7 @@ class QuotationTest extends TestCase
         ]);
 
         $response->assertCreated();
- 
+
     }
 
     public function test_user_can_get_all_address_associated_with_account()
@@ -58,7 +60,7 @@ class QuotationTest extends TestCase
 
         $response->assertJsonCount(1);
 
-        $response->assertJson(fn (AssertableJson $json) => 
+        $response->assertJson(fn (AssertableJson $json) =>
             $json->where('quotation_id', '=', 1)
                 ->where('quotation_to','SAFARI PARK HOTEL')
                 ->etc()
@@ -67,7 +69,7 @@ class QuotationTest extends TestCase
 
     public function test_user_can_post_product_to_quotation_table()
     {
- 
+
     }
 
     public function test_user_can_get_all_products_on_quotation_table()

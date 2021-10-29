@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -9,11 +10,15 @@ use Tests\TestCase;
 
 class CompanyTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
      * @return void
      */
+
+
     public function test_user_can_post_company_details()
     {
         $response = $this->post('api/company', [
@@ -43,7 +48,7 @@ class CompanyTest extends TestCase
 
             $response->assertOk();
 
-            $response->assertJson(fn(AssertableJson $json) => 
+            $response->assertJson(fn(AssertableJson $json) =>
                     $json->where('id',1)
                     ->where('company_slogan', 'Together on the move')
                     ->etc()
