@@ -57,17 +57,4 @@ class User extends Authenticatable
         return $this->belongsTo(Company::class,'id','company_id')->latest();
     }
 
-    static function filterProduct($products)
-    {
-        $arr = [];
-
-        foreach ($products as $product)
-        {
-           array_push($arr,$product);
-        }
-
-         return $arr;
-    }
-
-
 }
