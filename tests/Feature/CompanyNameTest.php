@@ -61,7 +61,13 @@ class CompanyNameTest extends TestCase
 
     public function test_user_relates_to_company()
     {
-        $response = $this->get('/api/company_name/1');
+        $response = $this->get('/api/company_name/1?user_id=1');
         $response->assertOk();
+
+        $response->assertJson(fn(AssertableJson $json) =>
+            $json->where('id',1)
+            ->where('company_name','LOLA INVESTMENTS COMPANY LIMTED')
+            ->etc()
+        );
     }
 }

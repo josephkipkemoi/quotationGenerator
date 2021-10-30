@@ -6,9 +6,7 @@ use App\Models\CompanyName;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
-use PharIo\Manifest\CopyrightElement;
 
-use function PHPUnit\Framework\throwException;
 
 class CompanyNameController extends Controller
 {
@@ -53,7 +51,7 @@ class CompanyNameController extends Controller
     public function show(Request $request,$id, User $user)
     {
         //
-        return $user->find($request->user_id)->company_name()->where('id', $id)->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);
+         return $user->find($request->user_id)->company_name->where('id', $id)->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);
     }
 
     /**

@@ -13,24 +13,24 @@ use function PHPUnit\Framework\throwException;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseMigrations;
+    use CreatesApplication;
 
-    private Generator $faker;
+    // private Generator $faker;
 
-    public function setUp():void
-    {
-        parent::setUp();
+    // public function setUp():void
+    // {
+    //     parent::setUp();
 
-        $this->faker = FakerFactory::create();
-        Artisan::call('migrate:refresh');
-    }
+    //     $this->faker = FakerFactory::create();
+    //     Artisan::call('migrate:refresh');
+    // }
 
-    public function _get($key)
-    {
-        if($key == 'faker')
-        {
-            return $this->faker;
-        }
-        throw new Exception('Unknown Key Request');
-    }
+    // public function _get($key)
+    // {
+    //     if($key == 'faker')
+    //     {
+    //         return $this->faker;
+    //     }
+    //     throw new Exception('Unknown Key Request');
+    // }
 }

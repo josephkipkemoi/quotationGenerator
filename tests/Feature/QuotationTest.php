@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class QuotationTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -45,24 +45,20 @@ class QuotationTest extends TestCase
 
     public function test_user_can_get_all_address_associated_with_account()
     {
-        $response = $this->get('/api/quotation_address?user_id=1');
+        $response = $this->get('/api/quotation_address?company_id=1');
 
         $response->assertOk();
-
-        $response->assertJsonCount(2);
     }
 
     public function test_user_can_get_most_recent_quotation_address()
     {
-        $response = $this->get('/api/quotation_address?user_id=1&current=true');
+        $response = $this->get('/api/quotation_address?company_id=1');
 
         $response->assertOk();
 
-        $response->assertJsonCount(1);
-
         $response->assertJson(fn (AssertableJson $json) =>
             $json->where('quotation_id', '=', 1)
-                ->where('quotation_to','SAFARI PARK HOTEL')
+                ->where('quotation_to','CAPITAL HILL RESTARAUNT')
                 ->etc()
         );
     }
