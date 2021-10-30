@@ -6,11 +6,12 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Psy\Command\WhereamiCommand;
 use Tests\TestCase;
 
 class CompanyTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -44,7 +45,7 @@ class CompanyTest extends TestCase
 
     public function test_user_can_get_most_recent_company_details_registered()
     {
-            $response = $this->get('api/company?company_details=1');
+            $response = $this->get('api/company?company_detail=1');
 
             $response->assertOk();
 
@@ -61,14 +62,12 @@ class CompanyTest extends TestCase
 
         $response->assertOk();
 
-        $response->assertJsonCount(1);
+        $response->assertJson(fn(AssertableJson $json) =>
+                $json->where('id',1)
+                ->where('company_web_url','www.somecompany.co.ke')
+                ->etc()
+        );
     }
 
 
-    public function test_user_can_not_get_company_details_if_not_registered()
-    {
-        $response = $this->get('api/company/2');
-
-        $response->assertJsonCount(1);
-    }
 }

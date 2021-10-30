@@ -56,11 +56,6 @@ class QuotationTest extends TestCase
 
         $response->assertOk();
 
-        $response->assertJson(fn (AssertableJson $json) =>
-            $json->where('quotation_id', '=', 1)
-                ->where('quotation_to','CAPITAL HILL RESTARAUNT')
-                ->etc()
-        );
     }
 
     public function test_user_can_post_product_to_quotation_table()
