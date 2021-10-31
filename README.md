@@ -8,11 +8,11 @@ PHP 8 >
 Composer
 
 ## How to install application
-Git clone https://github.com/josephkipkemoi/quotationGenerator.git
-cd quotationGenerator
-Composer Install
-Npm run and install
-Php artisan serve
+> **Git clone https://github.com/josephkipkemoi/quotationGenerator.git
+> **cd quotationGenerator
+> **Composer Install
+> **Npm run and install
+> **Php artisan serve
 
 
 ## Database
