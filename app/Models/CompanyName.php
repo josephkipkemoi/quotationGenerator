@@ -30,6 +30,6 @@ class CompanyName extends Model
 
     public function relate_company()
     {
-        return $this->belongsTo(CompanyName::class, 'id','relate_company_id')->latest();
+        return $this->belongsTo(Company::class, 'id','company_id');
     }
 }

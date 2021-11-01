@@ -15,9 +15,9 @@ class CompanyNameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,CompanyName $company_name)
+    public function index(Request $request,CompanyName $company_name, User $user)
     {
-        return $company_name->find($request->user_id)->relate_company;
+        return $user->find($request->user_id)->company_name->last();
     }
 
     /**
@@ -48,10 +48,10 @@ class CompanyNameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id, User $user)
+    public function show($id, User $user)
     {
         //
-         return $user->find($request->user_id)->company_name->where('id', $id)->first()->makeHidden(['created_at', 'updated_at','relate_company_id']);
+        return $user->find($id)->company_name->last();
     }
 
     /**
