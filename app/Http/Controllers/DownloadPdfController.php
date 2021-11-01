@@ -17,12 +17,12 @@ use Barryvdh\DomPDF\PDF;
 class DownloadPdfController extends Controller
 {
     //
-    public function index(Request $request, PDF $pdf,DownloadPdf $download, Quotation $quotation, QuotationTotal $quotation_total, CompanyName $company_name, Product $product, Company $company)
+    public function index(Request $request, PDF $pdf,DownloadPdf $download, Quotation $quotation, QuotationTotal $quotation_total, CompanyName $company_name, Product $product, Company $company,User $user)
     {
        return $download->preparePdf($request,$pdf,
                                     $quotation->find($request->product_id)->quotation_address()->latest()->first()->attributesToArray(),
-                                    $company_name->find($request->product_id)->relate_company()->latest()->first()->makeHidden('created_at','id','updated_at','relate_company_id')->attributesToArray(),
-                                    $company->find($request->product_id)->company_details()->latest()->first()->makeHidden('id','company_id')->attributesToArray(),
+                                    $user->find($request->product_id)->company_name->last()->makeHidden('id')->toArray(),
+                                    $company->find($request->product_id)->company_details->latest()->first()->makeHidden('company_id','id')->toArray(),
                                     $quotation_total->find($request->product_id)->quotation_total_method->makeHidden('id')->attributesToArray(),
                                     $product->find($request->product_id)->user_quotation()->get()->makeHidden(['product_id','id'])->toArray()
                   );

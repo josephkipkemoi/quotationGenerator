@@ -39,7 +39,7 @@ caption {
 
      @foreach($company_details as $company)
          <span>{{$company}}</span><br/>
-    @endforeach 
+    @endforeach
 </div>
 
 <br/>
@@ -57,7 +57,7 @@ caption {
 <th>Company</th>
 @foreach($quotation_address as $quotation_addressee)
     <td width="160px">{{$quotation_addressee}}</td>
-@endforeach 
+@endforeach
 </table>
 
 <br/>
@@ -69,32 +69,32 @@ caption {
         <th>Unit Price</th>
         <th>Total</th>
 </tr>
- 
+
 @foreach($products as $product)
 <tr>
      @foreach($product as $prod)
             <td>{{$prod}}</td>
     @endforeach
 </tr>
-@endforeach 
+@endforeach
 </table>
 
 <br/>
 
 <table>
- 
+
 <tr>
     <th>Sub Total</th>
    <th>VAT 16%</th>
    <th>Total</th>
 </tr>
  @foreach($quotation_total as $quoute_amount)
-     <td id="amt">{{$quoute_amount}}</td> 
+     <td id="amt">{{$quoute_amount}}</td>
  @endforeach
 </table>
 <br/>
 <br/>
 <span>NB: All prices are inclusive of VAT</span>
- 
+
 </body>
 </html>

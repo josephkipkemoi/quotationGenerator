@@ -17,7 +17,7 @@ class CompanyNameController extends Controller
      */
     public function index(Request $request,CompanyName $company_name, User $user)
     {
-        return $user->find($request->user_id)->company_name->last();
+         return $user->find($request->user_id)->company_name->last();
     }
 
     /**
