@@ -21,7 +21,7 @@ class QuotationTotal extends Model
 
 
     protected $hidden = [
-        'created_at','updated_at','quotation_totals_id'
+        'created_at','updated_at','quotation_totals_id','id'
     ];
 
     static function quotationArithmetic($amount, $company_id)
@@ -39,9 +39,9 @@ class QuotationTotal extends Model
 
     }
 
-    public function quotation_total_method()
+    public function quotation_sum()
     {
-        return $this->belongsTo(QuotationTotal::class,'id','quotation_totals_id')->latest();
+        return $this->belongsTo(Product::class,'id','id');
     }
 
 }

@@ -15,7 +15,7 @@ class Quotation extends Model
     ];
 
     protected $hidden = [
-        'created_at','updated_at'
+        'created_at','updated_at','id'
     ];
 
     protected $visible = [
@@ -34,7 +34,7 @@ class Quotation extends Model
 
     public function quotation_address()
     {
-        return $this->belongsTo(Quotation::class,'id','quotation_id')->latest();
+        return $this->hasMany(CompanyName::class,'id','id');
     }
 
     public function product_details()

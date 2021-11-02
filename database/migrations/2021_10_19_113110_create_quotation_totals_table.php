@@ -15,7 +15,7 @@ class CreateQuotationTotalsTable extends Migration
     {
         Schema::create('quotation_totals', function (Blueprint $table) {
             $table->id();
-            $table->string('quotation_totals_id')->references('product_id')->on('products');
+            $table->string('quotation_totals_id')->references('id')->on('products');
 
             $table->integer('quotation_sub_total');
             $table->integer('quotation_vat');

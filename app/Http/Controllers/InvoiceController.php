@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quotation;
-use Illuminate\Http\Request;
+use App\Models\Invoice;
 use App\Models\User;
+use Illuminate\Http\Request;
 
-class QuotationController extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Quotation $quotation)
+    public function index(Request $request, User $user,Invoice $invoice)
     {
         //
-          return $quotation->find($request->company_id)->quotation_address;
-     }
+        return $invoice->findOrFail(1);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,10 +35,10 @@ class QuotationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Quotation $quote)
+    public function store(Request $request)
     {
-        return $quote->validate($request);
-     }
+        //
+    }
 
     /**
      * Display the specified resource.

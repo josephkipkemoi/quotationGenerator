@@ -15,7 +15,7 @@ class Company extends Model
     ];
 
     protected $hidden = [
-        'created_at','updated_at','company_id'
+        'created_at','updated_at','company_id','id'
     ];
 
     static function validate($request)
@@ -31,7 +31,7 @@ class Company extends Model
 
     public function company_details()
     {
-        return $this->belongsTo(Company::class,'company_id','id');
+        return $this->belongsTo(CompanyName::class,'id','id');
     }
 
 }
