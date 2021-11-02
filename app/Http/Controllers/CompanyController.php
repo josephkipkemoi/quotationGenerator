@@ -15,10 +15,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, User $user)
+    public function index(Request $request, CompanyName $company_name)
     {
         //
-        return $user->find($request->company_detail)->company_address;
+        return $company_name->find($request->company_id)->company_details;
     }
 
     /**

@@ -19,7 +19,7 @@ class Product extends Model
     ];
 
     protected $hidden = [
-        'created_at','updated_at','product_id'
+        'created_at','updated_at','product_id','id'
     ];
 
      static function validateProduct($request)
@@ -68,6 +68,6 @@ class Product extends Model
 
     public function get_quotation()
     {
-        return $this->belongsTo(QuotationTotal::class,'product_id','quotation_totals_id');
+        return $this->hasOne(QuotationTotal::class,'quotation_totals_id','id');
     }
 }

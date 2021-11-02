@@ -3,23 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyName;
-use App\Models\Company;
-use App\Models\User;
+use App\Models\Quotation;
 use Illuminate\Http\Request;
+use App\Models\User;
 
-
-class CompanyNameController extends Controller
+class QuotationAddressController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, User $user)
+    public function index(Request $request, Quotation $quotation, CompanyName $companyName)
     {
-       return $user->find($request->user_id)->company_name;
-        //  return $user->find($request->user_id)->company_name->last();
-    }
+        //
+          return $companyName->find($request->company_id)->company_address;
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -37,11 +36,10 @@ class CompanyNameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, CompanyName $company)
+    public function store(Request $request, Quotation $quote)
     {
-        //
-       return $company->validate($request);
-    }
+        return $quote->validate($request);
+     }
 
     /**
      * Display the specified resource.
@@ -49,10 +47,9 @@ class CompanyNameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, User $user)
+    public function show($id)
     {
         //
-        return $user->find($id)->company_name->last();
     }
 
     /**

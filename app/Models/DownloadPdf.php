@@ -12,7 +12,7 @@ class DownloadPdf extends Model
     static function preparePdf($request,$pdf,$quotation_address, $company_details, $quotation_total, $products,$products_arr)
     {
 
-        $pdfFile = $pdf->loadView('download', [ 'quotation_total' => $products,
+         $pdfFile = $pdf->loadView('download', [ 'quotation_total' => $products,
                                                 'quotation_address' => $quotation_address,
                                                 'company_details' => $quotation_total,
                                                 'company_name' => $company_details,
@@ -20,5 +20,5 @@ class DownloadPdf extends Model
 
         return $pdfFile->download(`Quotation.pdf`);
     }
- 
+
 }

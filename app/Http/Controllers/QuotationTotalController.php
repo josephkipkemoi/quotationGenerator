@@ -9,9 +9,9 @@ use App\Models\QuotationTotal;
 class QuotationTotalController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index(Request $request, Product $product)
     {
-        return QuotationTotal::find($request->quotation_total_id)->quotation_total_method;
+        return $product->find($request->product_id)->get_quotation;
     }
 
     public function store(Request $request,Product $product, QuotationTotal $quotation)

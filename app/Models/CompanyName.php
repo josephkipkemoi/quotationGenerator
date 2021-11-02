@@ -10,26 +10,31 @@ class CompanyName extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['company_name','relate_company_id'];
+    protected $fillable = ['company_name','user_id'];
 
-    protected $hidden = ['created_at','updated_at','relate_company_id'];
+    protected $hidden = ['created_at','updated_at','user_id','id'];
 
     static function validate($request)
     {
         $request->validate([
-            'company_name' => 'required','relate_company_id' => 'required'
+            'company_name' => 'required','user_id' => 'required'
         ]);
 
         $company_name = CompanyName::create([
-            'relate_company_id' => $request->relate_company_id,
+            'user_id' => $request->user_id,
             'company_name' => $request->company_name
         ]);
 
         return $company_name;
     }
 
-    public function relate_company()
+    public function company_details()
     {
-        return $this->belongsTo(Company::class, 'id','company_id');
+        return $this->belongsTo(Company::class, 'id','id');
+    }
+
+    public function company_address()
+    {
+        return  $this->hasMany(Quotation::class,'quotation_id','id');
     }
 }

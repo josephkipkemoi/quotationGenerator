@@ -6,9 +6,8 @@ use App\Models\Product;
 use App\Models\Quotation;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Svg\Tag\Rect;
 
-class ProductTotalController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +31,7 @@ class ProductTotalController extends Controller
     public function store(Request $request, Product $product)
     {
         //
-        Product::updateOrCreate($product->setTotalPrice($product->validateProduct($request,$product)->all(),$product));
+        return Product::create($product->setTotalPrice($product->validateProduct($request,$product)->all(),$product));
     }
 
     /**
