@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyDetailsRequest;
-use App\Models\Company;
+use App\Models\CompanyAdress;
 use App\Models\CompanyName;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Company $company)
+    public function store(Request $request, CompanyAdress $company)
     {
         return $company->validate($request);
     }

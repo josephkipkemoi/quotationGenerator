@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/quotation_address', QuotationAddressController::class);
 Route::resource('/product', ProductController::class);
-Route::resource('/company', CompanyController::class);
+Route::resource('/company_address', CompanyAddressController::class);
 Route::resource('/company_name', CompanyNameController::class);
 Route::resource('/quotation_total', QuotationTotalController::class);
 Route::resource('/download', DownloadPdfController::class);

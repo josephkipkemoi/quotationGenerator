@@ -30,7 +30,7 @@ class CompanyName extends Model
 
     public function company_details()
     {
-        return $this->belongsTo(Company::class, 'id','id');
+        return $this->belongsTo(CompanyAdress::class, 'id','id');
     }
 
     public function company_address()

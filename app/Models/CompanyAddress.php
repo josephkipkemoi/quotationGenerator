@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class CompanyAdress extends Model
 {
     use HasFactory;
 
@@ -24,7 +24,7 @@ class Company extends Model
         $request->validate(['company_logo_url' => 'required', 'company_slogan' => 'required',
                             'company_web_url' => 'required', 'company_email' => 'required','company_id' => 'required']);
 
-        $company_details = Company::create($request->all());
+        $company_details = CompanyAdress::create($request->all());
 
         return $company_details;
     }

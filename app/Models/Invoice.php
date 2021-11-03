@@ -17,6 +17,6 @@ class Invoice extends Model
 
     public function invoice()
     {
-        return $this->hasManyThrough(CompanyName::class,Company::class);
+        return $this->hasManyThrough(CompanyName::class,CompanyAdress::class);
     }
 }

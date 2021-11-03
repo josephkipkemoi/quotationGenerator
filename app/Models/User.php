@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function company_address()
     {
-        return $this->belongsTo(Company::class,'id','company_id')->latest();
+        return $this->belongsTo(CompanyAdress::class,'id','company_id')->latest();
     }
 
 }
