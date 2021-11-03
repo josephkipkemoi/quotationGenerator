@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyName;
-use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,18 +16,7 @@ class CompanyNameController extends Controller
      */
     public function index(Request $request, User $user)
     {
-       return $user->find($request->user_id)->company_name;
-        //  return $user->find($request->user_id)->company_name->last();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+       return ['company_names' => $user->findOrFail($request->user_id)->company_name];
     }
 
     /**
@@ -49,21 +37,10 @@ class CompanyNameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, User $user)
+    public function show(Request $request, $id, User $user)
     {
         //
-        return $user->find($id)->company_name->last();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return ['company_name' => $user->findOrFail($request->user_id)->company_name[$id-1]];
     }
 
     /**
@@ -75,7 +52,8 @@ class CompanyNameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Find company name by ID and update
+       return CompanyName::findOrFail($id)->update(['company_name' => $request->company_name]);
     }
 
     /**
@@ -87,5 +65,6 @@ class CompanyNameController extends Controller
     public function destroy($id)
     {
         //
+        return CompanyName::findOrFail($id)->delete();
     }
 }
