@@ -17,13 +17,13 @@ use Barryvdh\DomPDF\PDF;
 class DownloadPdfController extends Controller
 {
     //
-    public function index(Request $request, PDF $pdf,DownloadPdf $download, Quotation $quotation, QuotationTotal $quotation_total, CompanyName $company_name, Product $product, Company $company,User $user)
+    public function index(Request $request, CompanyName $company_name, Product $product, User $user)
     {
-        $companyName = $user->find($request->user_id)->company_name->where('id',$request->c_name_id);
-        $companyAddress =  $company_name->find($request->user_id)->company_details->where('id', $request->c_name_id)->get();
-        $quotationAddress = $company_name->find($request->user_id)->company_address->where('id',$request->q_address);
-        $products = $product->find($request->prod_id)->user_quotation;
-        $quotationTotal =  $product->find($request->prod_id)->get_quotation;
+        $companyName = $user->findOrFail($request->user_id)->company_name->where('id',$request->c_name_id);
+        $companyAddress =  $company_name->findOrFail($request->user_id)->company_details->where('id', $request->c_name_id)->get();
+        $quotationAddress = $company_name->findOrFail($request->user_id)->company_address->where('id',$request->q_address);
+        $products = $product->findOrFail($request->prod_id)->user_quotation;
+        $quotationTotal =  $product->findOrFail($request->prod_id)->get_quotation;
 
         return ['company_name' => $companyName,
                 'company_address' => $companyAddress,
