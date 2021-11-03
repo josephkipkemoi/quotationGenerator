@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CompanyAddress;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ class CompanyName extends Model
 
     public function company_details()
     {
-        return $this->belongsTo(CompanyAdress::class, 'id','id');
+        return $this->belongsTo(CompanyAddress::class, 'id','id');
     }
 
     public function company_address()

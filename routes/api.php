@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyAddressController;
 use App\Http\Controllers\CompanyNameController;
 use App\Http\Controllers\DownloadPdfController;
 use App\Http\Controllers\InvoiceController;
