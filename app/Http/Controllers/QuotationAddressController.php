@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\CompanyName;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class QuotationAddressController extends Controller
 {
@@ -14,21 +13,11 @@ class QuotationAddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Quotation $quotation, CompanyName $companyName)
+    public function index(Request $request, CompanyName $companyName)
     {
         //
-          return $companyName->find($request->company_id)->company_address;
+          return $companyName->findOrFail($request->company_id)->company_address;
      }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,20 +36,11 @@ class QuotationAddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id, CompanyName $company_name)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        // one company can have many quotation addresses
+        // Get single quoation from company
+        return $company_name->findOrFail($request->company_id)->company_address->where('id','=',$id);
     }
 
     /**
@@ -73,6 +53,7 @@ class QuotationAddressController extends Controller
     public function update(Request $request, $id)
     {
         //
+        return Quotation::findOrFail($id)->update($request->all());
     }
 
     /**
@@ -84,5 +65,6 @@ class QuotationAddressController extends Controller
     public function destroy($id)
     {
         //
+        return Quotation::findOrFail($id)->delete();
     }
 }
