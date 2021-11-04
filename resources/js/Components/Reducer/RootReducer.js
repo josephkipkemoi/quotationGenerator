@@ -1,6 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const postCompanyName = createAsyncThunk(
+    'quotation/postCompanyName',
+    async (url, thunkApi) => {
+        const response = await axios.post(`/api/company_name?${url}`);
+
+        return response.data
+    }
+)
+
+export const getCompanyName = createAsyncThunk(
+    'quotation/getCompanyName',
+    async (url, thunkApi) => {
+        const response = await axios.get('/api/company_name');
+
+        return response.data
+    }
+)
+
 export const postCompany = createAsyncThunk(
     'quotation/postCompany',
     async (url,thunkApi) => {
