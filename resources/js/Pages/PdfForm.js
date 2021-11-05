@@ -1,34 +1,34 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import React, { useEffect } from "react";
+// import { useDispatch } from "react-redux";
 
-import Logo from './img/logo.jpg';
+// import Logo from './img/logo.jpg';
 
-export default function Form() {
-    const dispatch = useDispatch();
+// export default function Form() {
+//     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch()
-    },[dispatch])
+//     useEffect(() => {
+//         dispatch()
+//     },[dispatch])
 
-    return (
-        <div>
-            <Header/>
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <Header/>
+//         </div>
+//     )
+// }
 
-function Header(){
-    return (
-        <div>
-            <div>
+// function Header(){
+//     return (
+//         <div>
+//             <div>
 
-            </div>
-            <div>
-                <img src={Logo} alt="Logo"/>
-            </div>
-            <div>
+//             </div>
+//             <div>
+//                 <img src={Logo} alt="Logo"/>
+//             </div>
+//             <div>
 
-            </div>
-        </div>
-    )
-}
+//             </div>
+//         </div>
+//     )
+// }

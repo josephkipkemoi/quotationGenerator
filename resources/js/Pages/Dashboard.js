@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { useDispatch } from 'react-redux';
-import { postAddress, postCompany, postProduct, postTotal, downloadPdf } from '@/Components/Reducer/RootReducer';
+import { postAddress, postCompany, postProduct, postTotal, downloadPdf, getCompanyDetails } from '@/Components/Reducer/RootReducer';
 import '../../css/app.css';
 
-import Form from './PdfForm';
+// import Form from './PdfForm';
 
 export default function Dashboard(props) {
 
@@ -29,21 +29,21 @@ export default function Dashboard(props) {
                                         <div className="flex -mx-2">
                                             <div className="w-1/3 px-2">
                                                 <div>
-                                                    {/* <CompanyDetails props={props}/> */}
+                                                    <CompanyDetails props={props}/>
                                                 </div>
                                             </div>
                                             <div className="w-1/3 px-2">
                                                 <div>
-                                                    {/* <QuotationAddress props={props}/> */}
+                                                    <QuotationAddress props={props}/>
                                                 </div>
                                             </div>
                                             <div className="w-1/3 px-2">
                                                 <div>
-                                                    {/* <PostProductDetails props={props}/> */}
+                                                    <PostProductDetails props={props}/>
                                                 </div>
                                             </div>
                                         </div>
-                                        <Form/>
+                                        {/* <Form/> */}
                                     </div>
                         </div>
                     </div>
@@ -66,6 +66,10 @@ function CompanyDetails({props}){
 
     const [toggle,setToggle] = useState(true);
 
+    useEffect(() => {
+        dispatch(getCompanyDetails())
+    },[dispatch])
+
     const [company, setCompany] = useState({
         company_id:props.auth.user.id,
         company_logo_url:"",
@@ -77,6 +81,8 @@ function CompanyDetails({props}){
 
 
     const getInput = e => setCompany({...company, [e.target.name]:e.target.value})
+
+
 
     const param = new URLSearchParams(company).toString();
 

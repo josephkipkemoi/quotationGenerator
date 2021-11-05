@@ -10,10 +10,10 @@ export const postCompanyName = createAsyncThunk(
     }
 )
 
-export const getCompanyName = createAsyncThunk(
+export const getCompanyDetails = createAsyncThunk(
     'quotation/getCompanyName',
     async (url, thunkApi) => {
-        const response = await axios.get('/api/company_name');
+        const response = await axios.get('/api/company_address?user_id=1');
 
         return response.data
     }
