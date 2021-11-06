@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postAddress, postCompany, postProduct, postTotal, downloadPdf, getCompanyDetails } from '@/Components/Reducer/RootReducer';
 import '../../css/app.css';
 
@@ -108,6 +108,8 @@ function CompanyDetails({props}){
         }
 
     }
+
+    const company_address = useSelector(state => !!state.getCompanyAddress[0] ? state.getCompanyAddress[0].payload : undefined)
     return (
         <div>
             <div onClick={toggleBody} className="toggle-parent bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
@@ -123,7 +125,20 @@ function CompanyDetails({props}){
                     <p className="text-sm">This information will be at the top of your invoice, Make sure you give out correct information</p>
              </div>
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-
+            {!!company_address ? company_address.map((data,key) => {
+                    const {company_address, company_email,company_slogan,company_web_url,company_logo_url} = data
+                return (
+                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div className="mb-4" key={key}>
+                            <input className="block text-gray-700 text-sm font-bold mb-2" value={company_slogan} onChange={() => console.log('d')}/>
+                            <input className="block text-gray-700 text-sm font-bold mb-2" value={company_address} onChange={() => console.log('d')}/>
+                            <input className="block text-gray-700 text-sm font-bold mb-2" value={company_logo_url} onChange={() => console.log('d')}/>
+                            <input className="block text-gray-700 text-sm font-bold mb-2" value={company_email} onChange={() => console.log('d')}/>
+                            <input className="block text-gray-700 text-sm font-bold mb-2" value={company_web_url} onChange={() => console.log('d')}/>
+                        </div>
+                    </div>
+                )
+            }): <span>loading</span>}
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="company_logo">Company Logo</label>

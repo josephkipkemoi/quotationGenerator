@@ -5907,6 +5907,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5949,11 +5961,11 @@ var getCompanyDetails = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createA
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/company_address?user_id=1');
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/company_address?company_id=1');
 
           case 2:
             response = _context2.sent;
-            return _context2.abrupt("return", response.data);
+            return _context2.abrupt("return", _toConsumableArray(response.data.slice(-1)));
 
           case 4:
           case "end":
@@ -6057,10 +6069,9 @@ var postTotal = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThun
 
           case 2:
             res = _context6.sent;
-            console.log(id);
             return _context6.abrupt("return", res.data);
 
-          case 5:
+          case 4:
           case "end":
             return _context6.stop();
         }
@@ -6104,7 +6115,8 @@ var companySlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)
     company: [],
     address: [],
     product: [],
-    quotation_total: []
+    quotation_total: [],
+    getCompanyAddress: []
   },
   extraReducers: function extraReducers(builder) {
     builder.addCase(postCompany.fulfilled, function (state, data) {
@@ -6115,6 +6127,8 @@ var companySlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)
       state.product.push(data);
     }), builder.addCase(postTotal.fulfilled, function (state, data) {
       state.quotation_total.push(data);
+    }), builder.addCase(getCompanyDetails.fulfilled, function (state, data) {
+      state.getCompanyAddress.push(data);
     });
   }
 });
@@ -7225,6 +7239,9 @@ function CompanyDetails(_ref) {
     }
   };
 
+  var company_address = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return !!state.getCompanyAddress[0] ? state.getCompanyAddress[0].payload : undefined;
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       onClick: toggleBody,
@@ -7253,9 +7270,54 @@ function CompanyDetails(_ref) {
               className: "text-sm",
               children: "This information will be at the top of your invoice, Make sure you give out correct information"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            children: [!!company_address ? company_address.map(function (data, key) {
+              var company_address = data.company_address,
+                  company_email = data.company_email,
+                  company_slogan = data.company_slogan,
+                  company_web_url = data.company_web_url,
+                  company_logo_url = data.company_logo_url;
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  className: "mb-4",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                    className: "block text-gray-700 text-sm font-bold mb-2",
+                    value: company_slogan,
+                    onChange: function onChange() {
+                      return console.log('d');
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                    className: "block text-gray-700 text-sm font-bold mb-2",
+                    value: company_address,
+                    onChange: function onChange() {
+                      return console.log('d');
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                    className: "block text-gray-700 text-sm font-bold mb-2",
+                    value: company_logo_url,
+                    onChange: function onChange() {
+                      return console.log('d');
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                    className: "block text-gray-700 text-sm font-bold mb-2",
+                    value: company_email,
+                    onChange: function onChange() {
+                      return console.log('d');
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                    className: "block text-gray-700 text-sm font-bold mb-2",
+                    value: company_web_url,
+                    onChange: function onChange() {
+                      return console.log('d');
+                    }
+                  })]
+                }, key)
+              });
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              children: "loading"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "mb-4",
@@ -7353,7 +7415,7 @@ function CompanyDetails(_ref) {
                   })
                 })]
               })]
-            })
+            })]
           })]
         })
       })
