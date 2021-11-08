@@ -4,16 +4,22 @@ This is a web application for generating your quotations, invoices and receipts 
 No information is stored in the database, it is removed 24 hours after the original file has been downloaded
 
 ## Requirements to start application
-PHP 8 >
-Composer
+Docker
+docker-compose
 
 ## How to install application
 -  Git clone https://github.com/josephkipkemoi/quotationGenerator.git
 -  cd quotationGenerator
--  Composer Install
--  Npm run and install
--  Php artisan serve
-
+-  docker-compose up  
+-  Open port localhost:8000
 
 ## Database
-Sqlite database is  used for developement
+MYSQL is used as Database
+
+MYSQL ENVIRONMENT
+DB_CONNECTION=mysql
+DB_HOST=db // from db service in docker-compose.yml
+DB_PORT=3306
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
