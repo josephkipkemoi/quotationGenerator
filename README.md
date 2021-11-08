@@ -17,9 +17,9 @@ docker-compose
 MYSQL is used as Database
 
 MYSQL ENVIRONMENT
-DB_CONNECTION=mysql
-DB_HOST=db // from db service in docker-compose.yml
-DB_PORT=3306
-DB_DATABASE=
-DB_USERNAME=
-DB_PASSWORD=
+-   DB_CONNECTION=mysql
+-   DB_HOST=db // from db service in docker-compose.yml
+-   DB_PORT=3306
+-   DB_DATABASE=
+-   DB_USERNAME=
+-   DB_PASSWORD=
