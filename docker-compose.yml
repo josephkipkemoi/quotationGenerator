@@ -19,17 +19,20 @@ services:
 
     db:
         image: mysql:5.7
-        container_name: lola-invoice-db
+        container_name: db
         restart: unless-stopped
+        tty: true
+        ports:
+            - 6603:3306
         environment:
-            MYSQL_DATABASE: invoicegen
-            MYSQL_ROOT_PASSWORD: commandme007!@~
-            MYSQL_PASSWORD: commandme007!@~
-            MYSQL_USER: root
-            SERVICE_TAGS: dev
-            SERVICE_NAME: mysql
-        # volumes:
-        #     - ./docker-compose/mysql:/docker-entrypoint
+             MYSQL_DATABASE: invoicegen
+             MYSQL_USER_NAME: root
+             MYSQL_ROOT_PASSWORD: commandme007!@~
+             SERVICE_TAGS: dev
+             SERVICE_NAME: mysql
+        volumes:
+            - dbdata:/var/lib/mysql/
+            - /root/docker/test-mysql/conf.d:/etc/mysql/conf.d
         networks:
             - lola-invoice
 
@@ -48,3 +51,7 @@ services:
 networks:
     lola-invoice:
         driver: bridge
+
+volumes:
+    dbdata:
+        driver: local
