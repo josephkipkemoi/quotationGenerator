@@ -1,49 +1,57 @@
-version: "3"
+version: "3.7"
 services:
+
     app:
         build:
             args:
-                user:jkemboe
-                uid:1000
+                user: admin
+                uid: 1000
             context: ./
             dockerfile: Dockerfile
-            image: lola-invoice
-            container_name: lola-invoice
-            restart: unless-stopped
-            working_dir: /var/www
-            volumes:
-                - ./:/var/www
-            networks:
-                - lola-invoice
+        image: lola-invoice
+        container_name: lola-invoice
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+        - ./:/var/www
+        networks:
+        - lola-invoice
 
     db:
         image: mysql:5.7
-        container_name: lola-invoice
+        container_name: db
         restart: unless-stopped
+        tty: true
+        ports:
+            - 6603:3306
         environment:
-            MYSQL_DATABASE:
-            MYSQL_ROOT_PASSWORD:
-            MYSQL_PASSWORD:
-            MYSQL_USER:
-            SERVICE_TAGS:
-            SERVICE_NAME:
+             MYSQL_DATABASE: invoicegen
+             MYSQL_USER_NAME: root
+             MYSQL_ROOT_PASSWORD: commandme007!@~
+             SERVICE_TAGS: dev
+             SERVICE_NAME: mysql
         volumes:
-            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+            - dbdata:/var/lib/mysql/
+            - /root/docker/test-mysql/conf.d:/etc/mysql/conf.d
         networks:
-            lola-invoice
+            - lola-invoice
 
     nginx:
-        image: nginx:alpine
-        container_name: lola-invoice-nginx
+        image: nginx:1.17-alpine
+        container_name: lolainvoice-nginx
         restart: unless-stopped
         ports:
         - 8000:80
         volumes:
-            - ./:/var/www
-            - ./docker-compose/nginx:/etc/nginx/conf.d/
+        - ./:/var/www
+        - ./docker-compose/nginx:/etc/nginx/conf.d
         networks:
-            - lola-invoice
+        - lola-invoice
 
-    networks:
-        lola-invoice:
-            driver: bridge
+networks:
+    lola-invoice:
+        driver: bridge
+
+volumes:
+    dbdata:
+        driver: local

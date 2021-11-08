@@ -13,9 +13,9 @@ export const postCompanyName = createAsyncThunk(
 export const getCompanyDetails = createAsyncThunk(
     'quotation/getCompanyName',
     async (url, thunkApi) => {
-        const response = await axios.get('/api/company_address?user_id=1');
+        const response = await axios.get('/api/company_address?company_id=1');
 
-        return response.data
+        return [...response.data.slice(-1)]
     }
 )
 
@@ -50,7 +50,7 @@ export const postTotal = createAsyncThunk(
     'quotation/postTotal',
     async (id,thunkApi) => {
         const res = await axios.post(`/api/quotation_total?product_id=${id}`);
-        console.log(id)
+
         return res.data
     }
 )
@@ -70,7 +70,8 @@ export const companySlice = createSlice({
         company:[],
         address:[],
         product:[],
-        quotation_total:[]
+        quotation_total:[],
+        getCompanyAddress: []
     }
     ,
     extraReducers: (builder) => {
@@ -85,6 +86,9 @@ export const companySlice = createSlice({
         }),
         builder.addCase(postTotal.fulfilled, (state, data) => {
             state.quotation_total.push(data)
+        }),
+        builder.addCase(getCompanyDetails.fulfilled, (state, data) => {
+            state.getCompanyAddress.push(data)
         })
     }
 })
